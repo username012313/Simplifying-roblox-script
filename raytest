@@ -58,13 +58,13 @@ local Respawn = Tab:CreateButton({
 })
 
 local Brookhaven = Window:CreateTab("Brookhaven", 4483362458)
-local Button = Brookhaven:CreateButton({
+local CarSpeed = Brookhaven:CreateButton({
    Name = "Make Car Fast",
    Callback = function()
    -- start
-      local carName = playerName .. "Car"
+      local carName = Player.Name .. "Car"
       local carUuid = workspace.Vehicles:WaitForChild(carName):GetAttribute("VehicleUuid")
-      if carUuid then
+      if carUuid ~= nil then
          local args = {
 	         carUuid,
 	         {
@@ -86,7 +86,7 @@ local Button = Brookhaven:CreateButton({
 		         	MaxSpeed = math.huge,
 		         	Turbo = 3
 		         },
-		         Owner = Player
+		         Owner = Player.Name
    	      }
          }
 	      game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ApplyStateToVehicle"):InvokeServer(unpack(args))
