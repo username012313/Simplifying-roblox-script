@@ -59,50 +59,43 @@ local Respawn = Tab:CreateButton({
 
 local Brookhaven = Window:CreateTab("Brookhaven", 4483362458)
 local CarSpeed = Brookhaven:CreateButton({
-   Name = "Make Car Fast",
-   Callback = function()
-      -- start
-      local Player = game:GetService("Players").LocalPlayer
-      local vehiclesFolder = workspace:WaitForChild("Vehicles")
-      local carName = Player.Name .. "Car"
-      local car = vehiclesFolder:WaitForChild(carName)
-      local carUuid = car:GetAttribute("VehicleUuid")
-      if carUuid ~= nil then
-         local args = {
-	         carUuid,
-	         {
-		         Lights = {
-	      	   	lightsOn = false,
-		         	hazardsActive = false
-		         },
-		         IsLocked = false,
-		         Appearance = {
-		         	IsSmoking = false,
-		         	WheelDecal = "http://www.roblox.com/asset/?id=0",
-		          	BabyCarSeatInstalledNumber = 0,
-		         	Color = Color3.new(0.3294117748737335, 0.5921568870544434, 1),
-		         	IsOnFire = false,
-		         	SuspensionHeight = 2
-		         },
-		         Performance = {
-		         	DriftStrength = 1.5,
-		         	MaxSpeed = math.huge,
-		         	Turbo = 3
-		         },
-		         Owner = Player
-   	      }
-         }
-	      game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ApplyStateToVehicle"):InvokeServer(unpack(args))
-         end
-      else
-         Rayfield:Notify({
-            Title = "Error!",
-            Content = "Does not work on this car, try a different one!",
-            Duration = 6.5,
-            Image = 0,
-         })
-      -- end
-      end
-   end,
+    Name = "Make Car Fast",
+    Callback = function()
+        local Player = game:GetService("Players").LocalPlayer
+        local vehiclesFolder = workspace:WaitForChild("Vehicles")
+        local carName = Player.Name .. "Car"
+        local car = vehiclesFolder:WaitForChild(carName)
+        local carUuid = car:GetAttribute("VehicleUuid")
+
+        if carUuid ~= nil then
+            local args = {
+                carUuid,
+                {
+                    Lights = {lightsOn=false, hazardsActive=false},
+                    IsLocked = false,
+                    Appearance = {
+                        IsSmoking=false,
+                        WheelDecal="http://www.roblox.com/asset/?id=0",
+                        BabyCarSeatInstalledNumber=0,
+                        Color=Color3.new(0.3294117748737335, 0.5921568870544434, 1),
+                        IsOnFire=false,
+                        SuspensionHeight=2
+                    },
+                    Performance = {DriftStrength=1.5, MaxSpeed=math.huge, Turbo=3},
+                    Owner = Player
+                }
+            }
+
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ApplyStateToVehicle"):InvokeServer(unpack(args))
+
+        else
+            Rayfield:Notify({
+                Title = "Error!",
+                Content = "Does not work on this car, try a different one!",
+                Duration = 6.5,
+                Image = 0
+            })
+        end
+    end,
 })
 
