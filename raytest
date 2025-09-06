@@ -91,11 +91,33 @@ local CarSpeed = Brookhaven:CreateButton({
         else
             Rayfield:Notify({
                 Title = "Error!",
-                Content = "Does not work on this car, try a different one!",
+                Content = "Does not work on this car or car not spawned in!",
                 Duration = 6.5,
                 Image = 0
             })
         end
     end,
+})
+local TPDropdown = Brookhaven:CreateDropdown({
+   Name = "Teleport to places",
+   Options = {"Airport","Shop", "CarLot"},
+   CurrentOption = {"Option 1"},
+   MultipleOptions = false,
+   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Options)
+      local teleportLocations = {
+         ["Spawn"] = function()
+           HRP.CFrame = CFrame.new(0, 5, 0)
+         end,
+         ["Shop"] = function()
+           HRP.CFrame = CFrame.new(100, 5, 50)
+         end,
+         ["CarLot"] = function()
+           HRP.CFrame = CFrame.new(200, 5, -30)
+         end
+      } 
+      if teleportLocations[Options] then
+         teleportLocations[Options]()
+   end,
 })
 
