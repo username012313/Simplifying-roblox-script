@@ -40,7 +40,7 @@ local Window = Rayfield:CreateWindow({
 local Tab = Window:CreateTab("ERLC", 4483362458) -- Title, Image
 local Slider = Tab:CreateSlider({
    Name = "Slider Example",
-   Range = {-0.1, 10},
+   Range = {-0.1, 50},
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
@@ -80,5 +80,30 @@ local StiffnessSlider = Tab:CreateSlider({
         workspace.Vehicles["Chevlon Captain 1992"].Wheels.FR.Spring.Stiffness = Value
         workspace.Vehicles["Chevlon Captain 1992"].Wheels.RL.Spring.Stiffness = Value
         workspace.Vehicles["Chevlon Captain 1992"].Wheels.RR.Spring.Stiffness = Value
+   end,
+})
+local DampingSlider = Tab:CreateSlider({
+   Name = "Slider Example",
+   Range = {0, 2500},
+   Increment = 5,
+   Suffix = "",
+   CurrentValue = 10,
+   Flag = "Slider3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.FL.Spring.Damping = Value
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.FR.Spring.Damping = Value
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.RL.Spring.Damping = Value
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.RR.Spring.Damping = Value
+   end,
+})
+local Limiter = Tab:CreateToggle({
+   Name = "Disable/Enable Spring Limits",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.FL.Spring.LimitsEnabled = Value
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.FR.Spring.LimitsEnabled = Value
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.RL.Spring.LimitsEnabled = Value
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.RR.Spring.LimitsEnabled = Value
    end,
 })
