@@ -1,6 +1,6 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Player = game:GetService("Players").LocalPlayer
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/username012313/Simplifying-roblox-script/refs/heads/main/getcar"))()
 local Window = Rayfield:CreateWindow({
    Name = "buggy erlc thing",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -39,41 +39,6 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Tab = Window:CreateTab("ERLC", 4483362458) -- Title, Image
--- get car start ---------------------
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local vehiclesFolder = workspace:WaitForChild("Vehicles")
-
-local MyCar -- Holds the car model
-local MyCarPath -- Holds the safe path as a string
-
--- Helper: build safe path with [""] around names
-local function getSafeFullPath(instance)
-    local parts = {}
-    local current = instance
-    while current and current ~= game do
-        table.insert(parts, 1, string.format('["%s"]', current.Name))
-        current = current.Parent
-    end
-    return table.concat(parts, ".")
-end
-
-while true do
-    if not MyCar or not MyCar.Parent then
-        for _, vehicle in ipairs(vehiclesFolder:GetChildren()) do
-            local owner = vehicle:GetAttribute("Owner")
-            if owner == LocalPlayer.Name then
-                MyCar = vehicle
-                if MyCar and MyCar.Parent then
-                    MyCarPath = getSafeFullPath(MyCar) -- save to variable
-                    print(MyCarPath) -- still prints too
-                end
-                break
-            end
-        end
-    end
-    task.wait(1)
--- get car end --------------------
 local Slider = Tab:CreateSlider({
    Name = "Change Length",
    Range = {-0.1, 50},
