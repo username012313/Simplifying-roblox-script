@@ -32,8 +32,7 @@ while true do
         end
     end
     task.wait(1)
-end
--- get car end -----------------------------------------
+-- get car end --------------------
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Player = game:GetService("Players").LocalPlayer
