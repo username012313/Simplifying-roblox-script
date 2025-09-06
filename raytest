@@ -111,28 +111,4 @@ local CarSpeed = Brookhaven:CreateButton({
         end
     end,
 })
-local TPDropdown = Brookhaven:CreateDropdown({
-   Name = "Teleport to places",
-   Options = {"Airport","Shop", "CarLot"},
-   CurrentOption = {"Airport"},
-   MultipleOptions = false,
-   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Options)
-      local LocalPlayer = game:GetService("Players").LocalPlayer
-      local hrp = LocalPlayer.Character.HumanoidRootPart
-      local teleportLocations = {
-         ["Airport"] = function()
-           hrp.CFrame = CFrame.new(0, 5, 0)
-         end,
-         ["Shop"] = function()
-           hrp.CFrame = CFrame.new(100, 5, 50)
-         end,
-         ["CarLot"] = function()
-           hrp.CFrame = CFrame.new(200, 5, -30)
-         end
-      } 
-      if teleportLocations[Options] then
-         teleportLocations[Options]()
-   end,
-})
 
