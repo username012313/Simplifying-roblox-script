@@ -150,11 +150,16 @@ local ResetCarSpeed = Brookhaven:CreateButton({
         end
     end,
 })
-local misc = Window:CreateTab("Miscallenous", 4483362458)
-local KickLocalPlayer = misc:CreateButton({
+local misc = Window:CreateTab("misc", 4483362458) -- Title, Image
+local LoadIY = misc:CreateButton({
    Name = "Execute Infinite yield",
    Callback = function()
-      Player:Kick("Kicked Yoursself")
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
    end,
 })
-
+local KickLocalPlayer = misc:CreateButton({
+   Name = "Kick Yourself",
+   Callback = function()
+      Player:Kick(Kicked yourself)
+   end,
+})
