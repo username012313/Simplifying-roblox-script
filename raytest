@@ -131,7 +131,7 @@ local ResetCarSpeed = Brookhaven:CreateButton({
                         BabyCarSeatInstalledNumber=0,
                         Color=Color3.new(0.3294117748737335, 0.5921568870544434, 1),
                         IsOnFire=false,
-                        SuspensionHeight=1
+                        SuspensionHeight=2
                     },
                     Performance = {DriftStrength=1.0, MaxSpeed=10, Turbo=0},
                     Owner = Player
