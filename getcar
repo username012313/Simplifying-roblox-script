@@ -1,4 +1,3 @@
--- get car start ---------------------
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local vehiclesFolder = workspace:WaitForChild("Vehicles")
@@ -6,7 +5,6 @@ local vehiclesFolder = workspace:WaitForChild("Vehicles")
 local MyCar -- Holds the car model
 local MyCarPath -- Holds the safe path as a string
 
--- Helper: build safe path with [""] around names
 local function getSafeFullPath(instance)
     local parts = {}
     local current = instance
@@ -24,7 +22,7 @@ while true do
             if owner == LocalPlayer.Name then
                 MyCar = vehicle
                 if MyCar and MyCar.Parent then
-                    MyCarPath = getSafeFullPath(MyCar) -- save to variable
+                    MyCarPath = getSafeFullPath(MyCar) 
                     print(MyCarPath) -- still prints too
                 end
                 break
@@ -32,4 +30,3 @@ while true do
         end
     end
     task.wait(1)
--- get car end --------------------
