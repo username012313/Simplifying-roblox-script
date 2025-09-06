@@ -110,4 +110,44 @@ local CarSpeed = Brookhaven:CreateButton({
         end
     end,
 })
+local ResetCarSpeed = Brookhaven:CreateButton({
+    Name = "Reset the Car",
+    Callback = function()
+        local Player = game:GetService("Players").LocalPlayer
+        local vehiclesFolder = workspace:WaitForChild("Vehicles")
+        local carName = Player.Name .. "Car"
+        local car = vehiclesFolder:WaitForChild(carName)
+        local carUuid = car:GetAttribute("VehicleUuid")
+
+        if carUuid ~= nil then
+            local args = {
+                carUuid,
+                {
+                    Lights = {lightsOn=false, hazardsActive=false},
+                    IsLocked = false,
+                    Appearance = {
+                        IsSmoking=false,
+                        WheelDecal="http://www.roblox.com/asset/?id=0",
+                        BabyCarSeatInstalledNumber=0,
+                        Color=Color3.new(0.3294117748737335, 0.5921568870544434, 1),
+                        IsOnFire=false,
+                        SuspensionHeight=1
+                    },
+                    Performance = {DriftStrength=1.0, MaxSpeed=10, Turbo=0},
+                    Owner = Player
+                }
+            }
+
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ApplyStateToVehicle"):InvokeServer(unpack(args))
+
+        else
+            Rayfield:Notify({
+                Title = "Error!",
+                Content = "Does not work on this car or car not spawned in!",
+                Duration = 6.5,
+                Image = 0
+            })
+        end
+    end,
+})
 
