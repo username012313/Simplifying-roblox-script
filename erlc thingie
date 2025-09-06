@@ -41,7 +41,7 @@ local Tab = Window:CreateTab("ERLC", 4483362458) -- Title, Image
 local Slider = Tab:CreateSlider({
    Name = "Slider Example",
    Range = {-0.1, 50},
-   Increment = 0.1,
+   Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -54,10 +54,7 @@ local Slider = Tab:CreateSlider({
         workspace.Vehicles["Chevlon Captain 1992"].Wheels.FR.Spring.MinLength = Value
         workspace.Vehicles["Chevlon Captain 1992"].Wheels.RL.Spring.MinLength = Value
         workspace.Vehicles["Chevlon Captain 1992"].Wheels.RR.Spring.MinLength = Value
-        workspace.Vehicles["Chevlon Captain 1992"].Wheels.FL.Spring.Stiffness = Value
-        workspace.Vehicles["Chevlon Captain 1992"].Wheels.FR.Spring.Stiffness = Value
-        workspace.Vehicles["Chevlon Captain 1992"].Wheels.RL.Spring.Stiffness = Value
-        workspace.Vehicles["Chevlon Captain 1992"].Wheels.RR.Spring.Stiffness = Value
+        
    end,
 })
 local Toggle = Tab:CreateToggle({
@@ -69,5 +66,19 @@ local Toggle = Tab:CreateToggle({
             workspace.Vehicles["Chevlon Captain 1992"].Wheels.FR.Spring.Visible = Value
             workspace.Vehicles["Chevlon Captain 1992"].Wheels.RL.Spring.Visible = Value
             workspace.Vehicles["Chevlon Captain 1992"].Wheels.RR.Spring.Visible = Value
+   end,
+})
+local StiffnessSlider = Tab:CreateSlider({
+   Name = "Stiffness",
+   Range = {0, 100},
+   Increment = 0.1,
+   Suffix = "",
+   CurrentValue = 1,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   	    workspace.Vehicles["Chevlon Captain 1992"].Wheels.FL.Spring.Stiffness = Value
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.FR.Spring.Stiffness = Value
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.RL.Spring.Stiffness = Value
+        workspace.Vehicles["Chevlon Captain 1992"].Wheels.RR.Spring.Stiffness = Value
    end,
 })
