@@ -119,9 +119,9 @@ local TPDropdown = Brookhaven:CreateDropdown({
    Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Options)
       local LocalPlayer = game:GetService("Players").LocalPlayer
-      local hrp = LocalPlayer.HumanoidRootPart
+      local hrp = LocalPlayer.Character.HumanoidRootPart
       local teleportLocations = {
-         ["Spawn"] = function()
+         ["Airport"] = function()
            hrp.CFrame = CFrame.new(0, 5, 0)
          end,
          ["Shop"] = function()
@@ -135,3 +135,4 @@ local TPDropdown = Brookhaven:CreateDropdown({
          teleportLocations[Options]()
    end,
 })
+
