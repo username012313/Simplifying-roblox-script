@@ -1,3 +1,5 @@
+local Players = game:GetService(Players)
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
    Name = "Rayfield Example Window",
@@ -40,6 +42,18 @@ Rayfield:SetVisibility(true)
 local Tab = Window:CreateTab("Tab Example", 4483362458) -- Title, Image
 local Section = Tab:CreateSection("Section Example")
 local Divider = Tab:CreateDivider()
+
+local WalkSpeedSlider = Tab:CreateSlider({
+   Name = "Slider Example",
+   Range = {0, 250},
+   Increment = 1,
+   Suffix = "B",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        Players.LocalPlayer.Humanoid.WalkSpeed = Value
+   end,
+})
 
 
 Rayfield:LoadConfiguration()
