@@ -160,6 +160,6 @@ local LoadIY = misc:CreateButton({
 local KickLocalPlayer = misc:CreateButton({
    Name = "Kick Yourself",
    Callback = function()
-      Player:Kick(Kicked yourself)
+      Player:Kick("Kicked yourself")
    end,
 })
