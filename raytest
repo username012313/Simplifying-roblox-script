@@ -1,8 +1,8 @@
-local Players = game:GetService(Players)
-
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Player = game:GetService("Players").LocalPlayer
+
 local Window = Rayfield:CreateWindow({
-   Name = "Rayfield Example Window",
+   Name = "Brookhaven TEST",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Rayfield Interface Suite",
    LoadingSubtitle = "by Sirius",
@@ -37,23 +37,66 @@ local Window = Rayfield:CreateWindow({
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
-Rayfield:SetVisibility(true)
 
-local Tab = Window:CreateTab("Tab Example", 4483362458) -- Title, Image
-local Section = Tab:CreateSection("Section Example")
-local Divider = Tab:CreateDivider()
-
+local Tab = Window:CreateTab("LocalPlayer", 4483362458) -- Title, Image
 local WalkSpeedSlider = Tab:CreateSlider({
-   Name = "Slider Example",
-   Range = {0, 250},
+   Name = "Walkspeed",
+   Range = {0, 500},
    Increment = 1,
-   Suffix = "B",
+   Suffix = "",
    CurrentValue = 16,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "WalkSpeedSlider", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-        Players.LocalPlayer.Humanoid.WalkSpeed = Value
+      Player.Character.Humanoid.WalkSpeed = Value
+   end,
+})
+local Respawn = Tab:CreateButton({
+   Name = "Respawn",
+   Callback = function()
+        Player.Character.Humanoid.Health = 0
    end,
 })
 
+local Brookhaven = Window:CreateTab("Brookhaven", 4483362458)
+local Button = Brookhaven:CreateButton({
+   Name = "Make Car Fast",
+   Callback = function()
+   -- start
+      local carName = playerName .. "Car"
+      local carUuid = workspace.Vehicles:WaitForChild(carName):GetAttribute("VehicleUuid")
+      if carUuid then
+         local args = {
+	         ,
+	      {
+		      Lights = {
+	      		lightsOn = false,
+		      	hazardsActive = false
+		      },
+		      IsLocked = false,
+		      Appearance = {
+		      	IsSmoking = false,
+		      	WheelDecal = "http://www.roblox.com/asset/?id=0",
+		       	BabyCarSeatInstalledNumber = 0,
+		      	Color = Color3.new(0.3294117748737335, 0.5921568870544434, 1),
+		      	IsOnFire = false,
+		      	SuspensionHeight = 2
+		      },
+		      Performance = {
+		      	DriftStrength = 1.5,
+		      	MaxSpeed = math.huge,
+		      	Turbo = 3
+		      },
+		   Owner = Player
+   	   }
+	      game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ApplyStateToVehicle"):InvokeServer(unpack(args))
+      else
+         Rayfield:Notify({
+            Title = "Error!",
+            Content = "Does not work on this car, try a different one!",
+            Duration = 6.5,
+            Image = 0,
+         })
+   -- end
+   end,
+})
 
-Rayfield:LoadConfiguration()
