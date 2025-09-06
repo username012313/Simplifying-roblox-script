@@ -62,8 +62,10 @@ local CarSpeed = Brookhaven:CreateButton({
    Name = "Make Car Fast",
    Callback = function()
       -- start
+      local vehiclesFolder = workspace:WaitForChild("Vehicles")
       local carName = Player.Name .. "Car"
-      local carUuid = workspace.Vehicles:WaitForChild(carName):GetAttribute("VehicleUuid")
+      local car = vehiclesFolder:WaitForChild(carName)
+      local carUuid = car:GetAttribute("VehicleUuid")
       if carUuid ~= nil then
          local args = {
 	         carUuid,
@@ -86,7 +88,7 @@ local CarSpeed = Brookhaven:CreateButton({
 		         	MaxSpeed = math.huge,
 		         	Turbo = 3
 		         },
-		         Owner = Player.Name
+		         Owner = Player
    	      }
          }
 	      game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ApplyStateToVehicle"):InvokeServer(unpack(args))
@@ -102,5 +104,4 @@ local CarSpeed = Brookhaven:CreateButton({
       end
    end,
 })
-end
-Rayfield:LoadConfiguration()
+
