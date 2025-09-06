@@ -58,7 +58,8 @@ local JumpPowerSlider = Tab:CreateSlider({
    CurrentValue = 16,
    Flag = "JumpPowerSlider", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-      Player.Character.Humanoid.JumpPower = (JumpPower * 5)
+      Player.Character.Humanoid.JumpPower = Value*5
+      Player.Character.Humanoid.JumpHeight = Value
    end,
 })
 local Respawn = Tab:CreateButton({
