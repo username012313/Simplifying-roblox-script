@@ -157,9 +157,4 @@ local LoadIY = misc:CreateButton({
       loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
    end,
 })
-local KickLocalPlayer = misc:CreateButton({
-   Name = "Kick Yourself",
-   Callback = function()
-      LocalPlayer:Kick(Kicked yourself)
-   end,
-})
+
