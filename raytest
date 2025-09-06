@@ -49,6 +49,7 @@ local WalkSpeedSlider = Tab:CreateSlider({
    Callback = function(Value)
         while true do
             Player.Character.Humanoid.WalkSpeed = Value
+            task.wait(0.1)
             end
    end,
 })
