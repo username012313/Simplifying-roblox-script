@@ -37,7 +37,7 @@ local Window = Rayfield:CreateWindow({
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
-loadstring(game:HttpGet("https://raw.githubusercontent.com/username012313/Simplifying-roblox-script/refs/heads/main/getcar"))()
+
 local Tab = Window:CreateTab("ERLC", 4483362458) -- Title, Image
 local Slider = Tab:CreateSlider({
    Name = "Change Length",
@@ -204,3 +204,4 @@ local Slider = Tab1:CreateSlider({
         
    end,
 })
+loadstring(game:HttpGet("https://raw.githubusercontent.com/username012313/Simplifying-roblox-script/refs/heads/main/getcar"))()
