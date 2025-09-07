@@ -63,40 +63,56 @@ local Toggle = Tab:CreateToggle({
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
         local vehname = Player.Name .. "Car"
-        local UUID = workspace.Vehicles:WaitForChild(vehname).VehicleUuid
-        if Value == true then
-            local args = {
-                UUID,
-                {
-                    Lights = {
-                    lightsOn = false,
-                    hazardsActive = false
-                },
-                    IsLocked = false,
-                    Appearance = {
-                    IsSmoking = false,
-                    WheelDecal = "http://www.roblox.com/asset/?id=6409728408",
-                    BabyCarSeatInstalledNumber = 0,
-                    Color = Color3.new(0.3294117748737335, 0.5921568870544434, 1),
-                    IsOnFire = false,
-                    SuspensionHeight = 1
-                },
-                    Performance = {
-                    DriftStrength = 1.5,
-                    MaxSpeed = math.huge,
-                    Turbo = 3
-                },
-                    Owner = game:GetService("Players"):WaitForChild("iFwERLC")
-                }
-            }
-            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ApplyStateToVehicle"):InvokeServer(unpack(args))
-            end
-        else
-            local args = {
-	            -10
-            }
-            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("AddMaxSpeed"):InvokeServer(unpack(args))
-        end
+        if UUID.Parent then
+            local UUID = workspace.Vehicles:WaitForChild(vehname).VehicleUuid
+            if UUID ~= nil then
+                if Value == true then
+                    local args = {
+                        UUID,
+                        {
+                            Lights = {
+                            lightsOn = false,
+                            hazardsActive = false
+                        },
+                            IsLocked = false,
+                            Appearance = {
+                            IsSmoking = false,
+                            WheelDecal = "http://www.roblox.com/asset/?id=6409728408",
+                            BabyCarSeatInstalledNumber = 0,
+                            Color = Color3.new(0.3294117748737335, 0.5921568870544434, 1),
+                            IsOnFire = false,
+                            SuspensionHeight = 1
+                        },
+                            Performance = {
+                            DriftStrength = 1.5,
+                            MaxSpeed = math.huge,
+                            Turbo = 3
+                        },
+                            Owner = game:GetService("Players"):WaitForChild("iFwERLC")
+                        }
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ApplyStateToVehicle"):InvokeServer(unpack(args))
+                    end
+                else
+                    local args = {
+                        -10
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("AddMaxSpeed"):InvokeServer(unpack(args))
+                end
+            else
+                Rayfield:Notify({
+                    Title = "Error",
+                    Content = "Doesnt work on this car.",
+                    Duration = 6.5,
+                    Image = 4483362458,
+                })
+        else 
+            Rayfield:Notify({
+                    Title = "Error",
+                    Content = "Car not spawned in.",
+                    Duration = 6.5,
+                    Image = 4483362458,
+                })
     
    end,
 })
