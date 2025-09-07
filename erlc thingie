@@ -2,13 +2,18 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Player = game:GetService("Players").LocalPlayer
 local VehicleFolder = workspace.Vehicles
 local MyCarPath = nil
-for _, vehicle in ipairs(VehicleFolder:GetChildren()) do
-    local ownerValue = vehicle:FindFirstChild("Control_Values") and vehicle.Control_Values:FindFirstChild("Owner")
-    if ownerValue and ownerValue:IsA("StringValue") and ownerValue.Value == Player.Name then
-        MyCarPath = vehicle
-        print("Found player's vehicle: "..vehicle.Name)
-        break  -- remove break if you want all vehicles owned by the player
+while true do
+    local MyCarPath = nil
+
+    for _, vehicle in ipairs(VehicleFolder:GetChildren()) do
+        local ownerValue = vehicle:FindFirstChild("Control_Values") and vehicle.Control_Values:FindFirstChild("Owner")
+        if ownerValue and ownerValue:IsA("StringValue") and ownerValue.Value == Player.Name then
+            MyCarPath = vehicle
+            print("Found player's vehicle: "..vehicle.Name)
+            break  -- remove this if you want all vehicles owned by the player
+        end
     end
+    task.wait(repeatInterval)  
 end
 local Window = Rayfield:CreateWindow({
    Name = "buggy erlc thing",
@@ -49,7 +54,7 @@ local Window = Rayfield:CreateWindow({
 local Tab = Window:CreateTab("ERLC", 4483362458) -- Title, Image
 local Slider = Tab:CreateSlider({
    Name = "Change Length",
-   Range = {-0.1, 50},
+   Range = {-0.1, 4},
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
