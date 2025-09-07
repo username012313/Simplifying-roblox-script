@@ -123,11 +123,10 @@ local Button = Tab:CreateButton({
         localcar.DriveSeat.SpringFR.MaxForce = math.huge
         localcar.DriveSeat.SpringRL.MaxForce = math.huge
         localcar.DriveSeat.SpringRR.MaxForce = math.huge
-        localcar.DriveSeat.SpringFL.SafetyConstraintFL:Destroy()
-        localcar.DriveSeat.SpringFR.SafetyConstraintFL:Destroy()
-        localcar.DriveSeat.SpringRL.SafetyConstraintFL:Destroy()
-        localcar.DriveSeat.SpringRR.SafetyConstraintFL:Destroy()
-   end,
+        localcar.DriveSeat.SpringFL.SafetyConstraintFL.Length = math.huge
+        localcar.DriveSeat.SpringFR.SafetyConstraintFL.Length = math.huge
+        localcar.DriveSeat.SpringRL.SafetyConstraintFL.Length = math.huge
+        localcar.DriveSeat.SpringRR.SafetyConstraintFL.Length = math.huge
 })
 local Button = Tab:CreateButton({
     Name = "Reset all Springs",
@@ -163,5 +162,9 @@ local Button = Tab:CreateButton({
         localcar.DriveSeat.SpringFR.MaxForce = 80000
         localcar.DriveSeat.SpringRL.MaxForce = 80000
         localcar.DriveSeat.SpringRR.MaxForce = 80000 
+        localcar.DriveSeat.SpringFL.SafetyConstraintFL.Length = 1
+        localcar.DriveSeat.SpringFR.SafetyConstraintFL.Length = 1
+        localcar.DriveSeat.SpringRL.SafetyConstraintFL.Length = 1
+        localcar.DriveSeat.SpringRR.SafetyConstraintFL.Length = 1
    end,
 })
