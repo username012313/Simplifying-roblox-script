@@ -88,6 +88,17 @@ local Toggle = Tab:CreateToggle({
             MyCarPath.Wheels.RR.Spring.Visible = Value
    end,
 })
+local ColorPicker = Tab:CreateColorPicker({
+    Name = "Color Picker",
+    Color = Color3.fromRGB(255,255,255),
+    Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+      MyCarPath.Wheels.FL.Spring.Color = Value
+      MyCarPath.Wheels.FR.Spring.Color = Value
+      MyCarPath.Wheels.RL.Spring.Color = Value
+      MyCarPath.Wheels.RR.Spring.Color = Value
+    end
+})
 local StiffnessSlider = Tab:CreateSlider({
    Name = "Stiffness",
    Range = {0, 100},
@@ -175,17 +186,6 @@ local Slider = Tab1:CreateSlider({
         MyCarPath.Wheels.RR.Spring.MaxLength = Value
         
    end,
-})local Slider = Tab1:CreateSlider({
-   Name = "Change Length FL / MinLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MinLength = Value
-        
-   end,
 })
 local Slider = Tab1:CreateSlider({
    Name = "Change Length FR / MinLength",
@@ -211,15 +211,42 @@ local Slider = Tab1:CreateSlider({
         
    end,
 })
-local Slider = Tab1:CreateSlider({
-   Name = "Change Length RL / MaxLength",
+local Tab2 = Window:CreateTab("Engine?", 4483362458)
+local HingeConstraintSpeedSlider = Tab2:CreateSlider({
+   Name = "Acceleration changer",
    Range = {-0.1, 50},
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
-   Flag = "Slider12", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-        MyCarPath.Wheels.RL.Spring.MinLength = Value
-        
+        MyCarPath.Wheels.FL.["#AV"].MotorMaxTorque = Value
+        MyCarPath.Wheels.FL.["#AV"].MotorMaxAcceleration = Value
+        MyCarPath.Wheels.FR.["#AV"].MotorMaxTorque = Value
+        MyCarPath.Wheels.FR.["#AV"].MotorMaxAcceleration = Value
+        MyCarPath.Wheels.RL.["#AV"].MotorMaxTorque = Value
+        MyCarPath.Wheels.RL.["#AV"].MotorMaxAcceleration = Value
+        MyCarPath.Wheels.RR.["#AV"].MotorMaxTorque = Value
+        MyCarPath.Wheels.RR.["#AV"].MotorMaxAcceleration = Value
    end,
 })
+local HingeConstraintBrakeSlider = Tab2:CreateSlider({
+   Name = "Brake changer",
+   Range = {-0.1, 50},
+   Increment = 0.05,
+   Suffix = "",
+   CurrentValue = 2.2,
+   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        MyCarPath.Wheels.FL.["#BV"].MotorMaxTorque = Value
+         MyCarPath.Wheels.FL.["#BV"].MotorMaxAcceleration = Value
+         MyCarPath.Wheels.FR.["#BV"].MotorMaxTorque = Value
+         MyCarPath.Wheels.FR.["#BV"].MotorMaxAcceleration = Value
+         MyCarPath.Wheels.RL.["#BV"].MotorMaxTorque = Value
+         MyCarPath.Wheels.RL.["#BV"].MotorMaxAcceleration = Value
+         MyCarPath.Wheels.RR.["#BV"].MotorMaxTorque = Value
+         MyCarPath.Wheels.RR.["#BV"].MotorMaxAcceleration = Value
+   end,
+})
+
+
