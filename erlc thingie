@@ -8,13 +8,8 @@ local function findPlayerVehicle()
         local owner = controlValues and controlValues:FindFirstChild("Owner")
         if owner and owner:IsA("StringValue") and owner.Value == Player.Name then
             MyCarPath = vehicle
-            print("Found player's vehicle: "..vehicle.Name)
-            return MyCarPath
         end
     end
-    MyCarPath = nil
-    warn("Player's vehicle not found!")
-    return nil
 end
 
 -- Example usage:
