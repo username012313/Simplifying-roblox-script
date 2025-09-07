@@ -194,9 +194,15 @@ local Slider = Tab:CreateSlider({
         local carpath = workspace.Vehicles
         local player = game:GetService("Players").LocalPlayer
         local localcar = carpath:WaitForChild(player.Name)
-        localcar.DriveSeat.CylindricalConstraints.FL.MotorMaxTorque = Value
-        localcar.DriveSeat.CylindricalConstraints.FR.MotorMaxTorque = Value
-        localcar.DriveSeat.CylindricalConstraints.RL.MotorMaxTorque = Value
-        localcar.DriveSeat.CylindricalConstraints.RR.MotorMaxTorque = Value
+        while true do
+            localcar.DriveSeat.CylindricalConstraints.FL.MotorMaxTorque = Value
+            localcar.DriveSeat.CylindricalConstraints.FR.MotorMaxTorque = Value
+            localcar.DriveSeat.CylindricalConstraints.RL.MotorMaxTorque = Value
+            localcar.DriveSeat.CylindricalConstraints.RR.MotorMaxTorque = Value
+            localcar.DriveSeat.CylindricalConstraints.FL.MotorMaxAngularVelocity = Value
+            localcar.DriveSeat.CylindricalConstraints.FR.MotorMaxAngularVelocity = Value
+            localcar.DriveSeat.CylindricalConstraints.RL.MotorMaxAngularVelocity = Value
+            localcar.DriveSeat.CylindricalConstraints.RR.MotorMaxAngularVelocity = Value
+            end
    end,
 })
