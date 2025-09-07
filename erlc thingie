@@ -133,6 +133,7 @@ local Toggle = Tab:CreateToggle({
                MyCarPath.Wheels.FR:FindFirstChild("#SB").SuspensionHinge.UpperAngle = 10
                MyCarPath.Wheels.RL:FindFirstChild("#SB").SuspensionHinge.UpperAngle = 10
                MyCarPath.Wheels.RR:FindFirstChild("#SB").SuspensionHinge.UpperAngle = 10
+            end
    end,
 })
 local StiffnessSlider = Tab:CreateSlider({
