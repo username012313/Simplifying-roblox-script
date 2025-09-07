@@ -184,7 +184,7 @@ local Toggle = Tab:CreateToggle({
    end,
 })
 local Slider = Tab:CreateSlider({
-   Name = "Motor Speed",
+   Name = "Motor Speed ()",
    Range = {0, 100000},
    Increment = 1,
    Suffix = "",
