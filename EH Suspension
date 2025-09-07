@@ -99,7 +99,7 @@ local Toggle = Tab:CreateToggle({
 local Slider = Tab:CreateSlider({
    Name = "Stiffness",
    Range = {0, 100},
-   Increment = 10,
+   Increment = 1,
    Suffix = "",
    CurrentValue = 10,
    Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -181,5 +181,22 @@ local Toggle = Tab:CreateToggle({
         localcar.DriveSeat.SpringFR.Visible = Value
         localcar.DriveSeat.SpringRL.Visible = Value
         localcar.DriveSeat.SpringRR.Visible = Value
+   end,
+})
+local Slider = Tab:CreateSlider({
+   Name = "Motor Speed?????",
+   Range = {0, 10000},
+   Increment = 1,
+   Suffix = "",
+   CurrentValue = 10,
+   Flag = "Slider3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        local carpath = workspace.Vehicles
+        local player = game:GetService("Players").LocalPlayer
+        local localcar = carpath:WaitForChild(player.Name)
+        localcar.DriveSeat.CylindricalConstraints.FL.MotorMaxTorque = Value
+        localcar.DriveSeat.CylindricalConstraints.FR.MotorMaxTorque = Value
+        localcar.DriveSeat.CylindricalConstraints.RL.MotorMaxTorque = Value
+        localcar.DriveSeat.CylindricalConstraints.RR.MotorMaxTorque = Value
    end,
 })
