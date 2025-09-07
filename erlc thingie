@@ -218,16 +218,16 @@ local HingeConstraintSpeedSlider = Tab2:CreateSlider({
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
-   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider21", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-        MyCarPath.Wheels.FL.["#AV"].MotorMaxTorque = Value
-        MyCarPath.Wheels.FL.["#AV"].MotorMaxAcceleration = Value
-        MyCarPath.Wheels.FR.["#AV"].MotorMaxTorque = Value
-        MyCarPath.Wheels.FR.["#AV"].MotorMaxAcceleration = Value
-        MyCarPath.Wheels.RL.["#AV"].MotorMaxTorque = Value
-        MyCarPath.Wheels.RL.["#AV"].MotorMaxAcceleration = Value
-        MyCarPath.Wheels.RR.["#AV"].MotorMaxTorque = Value
-        MyCarPath.Wheels.RR.["#AV"].MotorMaxAcceleration = Value
+         MyCarPath.Wheels.FL:FindFirstChild("#AV").MotorMaxTorque = Value
+         MyCarPath.Wheels.FL:FindFirstChild("#AV").MotorMaxAcceleration = Value
+         MyCarPath.Wheels.FR:FindFirstChild("#AV").MotorMaxTorque = Value
+         MyCarPath.Wheels.FR:FindFirstChild("#AV").MotorMaxAcceleration = Value
+         MyCarPath.Wheels.RL:FindFirstChild("#AV").MotorMaxTorque = Value
+         MyCarPath.Wheels.RL:FindFirstChild("#AV").MotorMaxAcceleration = Value
+         MyCarPath.Wheels.RR:FindFirstChild("#AV").MotorMaxTorque = Value
+         MyCarPath.Wheels.RR:FindFirstChild("#AV").MotorMaxAcceleration = Value
    end,
 })
 local HingeConstraintBrakeSlider = Tab2:CreateSlider({
@@ -236,16 +236,16 @@ local HingeConstraintBrakeSlider = Tab2:CreateSlider({
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
-   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider20", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-        MyCarPath.Wheels.FL.["#BV"].MotorMaxTorque = Value
-         MyCarPath.Wheels.FL.["#BV"].MotorMaxAcceleration = Value
-         MyCarPath.Wheels.FR.["#BV"].MotorMaxTorque = Value
-         MyCarPath.Wheels.FR.["#BV"].MotorMaxAcceleration = Value
-         MyCarPath.Wheels.RL.["#BV"].MotorMaxTorque = Value
-         MyCarPath.Wheels.RL.["#BV"].MotorMaxAcceleration = Value
-         MyCarPath.Wheels.RR.["#BV"].MotorMaxTorque = Value
-         MyCarPath.Wheels.RR.["#BV"].MotorMaxAcceleration = Value
+         MyCarPath.Wheels.FL:FindFirstChild("#BV").MotorMaxTorque = Value
+         MyCarPath.Wheels.FL:FindFirstChild("#BV").MotorMaxAcceleration = Value
+         MyCarPath.Wheels.FR:FindFirstChild("#BV").MotorMaxTorque = Value
+         MyCarPath.Wheels.FR:FindFirstChild("#BV").MotorMaxAcceleration = Value
+         MyCarPath.Wheels.RL:FindFirstChild("#BV").MotorMaxTorque = Value
+         MyCarPath.Wheels.RL:FindFirstChild("#BV").MotorMaxAcceleration = Value
+         MyCarPath.Wheels.RR:FindFirstChild("#BV").MotorMaxTorque = Value
+         MyCarPath.Wheels.RR:FindFirstChild("#BV").MotorMaxAcceleration = Value
    end,
 })
 
