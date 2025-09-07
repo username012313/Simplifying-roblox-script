@@ -1,7 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Player = game:GetService("Players").LocalPlayer
+
 local Window = Rayfield:CreateWindow({
-   Name = "buggy brookhaven thing",
+   Name = "Brookhaven TEST",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Rayfield Interface Suite",
    LoadingSubtitle = "by Sirius",
@@ -36,8 +37,123 @@ local Window = Rayfield:CreateWindow({
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
-local Tab = Window:CreateTab("brookhaven", 4483362458) -- Title, Image
-local Slider = Tab:CreateSlider({
+
+local Tab = Window:CreateTab("LocalPlayer", 4483362458) -- Title, Image
+local WalkSpeedSlider = Tab:CreateSlider({
+   Name = "Walkspeed",
+   Range = {0, 500},
+   Increment = 1,
+   Suffix = "",
+   CurrentValue = 16,
+   Flag = "WalkSpeedSlider", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        while true do
+            Player.Character.Humanoid.WalkSpeed = Value
+            task.wait(0.1)
+            end
+   end,
+})
+local JumpPowerSlider = Tab:CreateSlider({
+   Name = "Jump Power",
+   Range = {0, 1000},
+   Increment = 1,
+   Suffix = "",
+   CurrentValue = 16,
+   Flag = "JumpPowerSlider", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      Player.Character.Humanoid.JumpPower = Value*5
+      
+   end,
+})
+local Respawn = Tab:CreateButton({
+   Name = "Respawn",
+   Callback = function()
+        Player.Character.Humanoid.Health = 0
+   end,
+})
+
+local Brookhaven = Window:CreateTab("Brookhaven", 4483362458)
+local CarSpeed = Brookhaven:CreateButton({
+    Name = "Make Car Fast",
+    Callback = function()
+        local Player = game:GetService("Players").LocalPlayer
+        local vehiclesFolder = workspace:WaitForChild("Vehicles")
+        local carName = Player.Name .. "Car"
+        local car = vehiclesFolder:WaitForChild(carName)
+        local carUuid = car:GetAttribute("VehicleUuid")
+
+        if carUuid ~= nil then
+            local args = {
+                carUuid,
+                {
+                    Lights = {lightsOn=false, hazardsActive=false},
+                    IsLocked = false,
+                    Appearance = {
+                        IsSmoking=false,
+                        WheelDecal="http://www.roblox.com/asset/?id=0",
+                        BabyCarSeatInstalledNumber=0,
+                        Color=Color3.new(0.3294117748737335, 0.5921568870544434, 1),
+                        IsOnFire=false,
+                        SuspensionHeight=2
+                    },
+                    Performance = {DriftStrength=1.5, MaxSpeed=math.huge, Turbo=3},
+                    Owner = Player
+                }
+            }
+
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ApplyStateToVehicle"):InvokeServer(unpack(args))
+
+        else
+            Rayfield:Notify({
+                Title = "Error!",
+                Content = "Does not work on this car or car not spawned in!",
+                Duration = 6.5,
+                Image = 0
+            })
+        end
+    end,
+})
+local ResetCarSpeed = Brookhaven:CreateButton({
+    Name = "Reset the Car",
+    Callback = function()
+        local Player = game:GetService("Players").LocalPlayer
+        local vehiclesFolder = workspace:WaitForChild("Vehicles")
+        local carName = Player.Name .. "Car"
+        local car = vehiclesFolder:WaitForChild(carName)
+        local carUuid = car:GetAttribute("VehicleUuid")
+
+        if carUuid ~= nil then
+            local args = {
+                carUuid,
+                {
+                    Lights = {lightsOn=false, hazardsActive=false},
+                    IsLocked = false,
+                    Appearance = {
+                        IsSmoking=false,
+                        WheelDecal="http://www.roblox.com/asset/?id=0",
+                        BabyCarSeatInstalledNumber=0,
+                        Color=Color3.new(0.3294117748737335, 0.5921568870544434, 1),
+                        IsOnFire=false,
+                        SuspensionHeight=2
+                    },
+                    Performance = {DriftStrength=1.0, MaxSpeed=10, Turbo=0},
+                    Owner = Player
+                }
+            }
+
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("ApplyStateToVehicle"):InvokeServer(unpack(args))
+
+        else
+            Rayfield:Notify({
+                Title = "Error!",
+                Content = "Does not work on this car or car not spawned in!",
+                Duration = 6.5,
+                Image = 0
+            })
+        end
+    end,
+})
+local Slider = Brookhaven:CreateSlider({
    Name = "Speed Slider",
    Range = {0, 100000},
    Increment = 100,
@@ -55,11 +171,10 @@ local Slider = Tab:CreateSlider({
         wheelpath.WheelBR.Cylindrical.MotorMaxAngularAcceleration = Value
         wheelpath.WheelFL.Cylindrical.MotorMaxAngularAcceleration = Value
         wheelpath.WheelFR.Cylindrical.MotorMaxAngularAcceleration = Value
-        workspace.Vehicles:WaitForChild(vehname).Seats.VehicleSeat.Turbo = Value
         workspace.Vehicles:WaitForChild(vehname).Seats.VehicleSeat.MaxSpeed = Value
    end,
 })
-local Toggle = Tab:CreateToggle({
+local Toggle = Brookhaven:CreateToggle({
    Name = "Set car to inf speed",
    CurrentValue = false,
    Flag = "Toggle1",
@@ -104,4 +219,17 @@ local Toggle = Tab:CreateToggle({
             game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("AddMaxSpeed"):InvokeServer(-10)
         end
    end, 
+})
+local misc = Window:CreateTab("misc", 4483362458) -- Title, Image
+local LoadIY = misc:CreateButton({
+   Name = "Execute Infinite yield",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+   end,
+})
+local KickLocalPlayer = misc:CreateButton({
+   Name = "Kick Yourself",
+   Callback = function()
+      Player:Kick("Kicked yourself")
+   end,
 })
