@@ -125,7 +125,7 @@ local Button = Tab:CreateButton({
         localcar.DriveSeat.SpringRR.MaxForce = math.huge
         localcar.DriveSeat.SafetyConstraintFL.Length = math.huge
         localcar.DriveSeat.SafetyConstraintFR.Length = math.huge
-        localcar.DriveSeat.SafetyConstraintRl.Length = math.huge
+        localcar.DriveSeat.SafetyConstraintRL.Length = math.huge
         localcar.DriveSeat.SafetyConstraintRR.Length = math.huge
    end,
 })
@@ -164,8 +164,8 @@ local Button = Tab:CreateButton({
         localcar.DriveSeat.SpringRL.MaxForce = 80000
         localcar.DriveSeat.SpringRR.MaxForce = 80000 
         localcar.DriveSeat.SafetyConstraintFL.Length = 1
-        localcar.DriveSeat.SafetyConstraintFL.Length = 1
-        localcar.DriveSeat.SafetyConstraintFL.Length = 1
-        localcar.DriveSeat.SafetyConstraintFL.Length = 1
+        localcar.DriveSeat.SafetyConstraintFR.Length = 1
+        localcar.DriveSeat.SafetyConstraintRl.Length = 1
+        localcar.DriveSeat.SafetyConstraintRR.Length = 1
    end,
 })
