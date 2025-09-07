@@ -3,17 +3,16 @@ local Player = game:GetService("Players").LocalPlayer
 local VehicleFolder = workspace.Vehicles
 local MyCarPath = nil
 while true do
-    local MyVehicles = {}  -- table to store all vehicles owned by the player
+    local MyCarPath = nil
 
     for _, vehicle in ipairs(VehicleFolder:GetChildren()) do
         local ownerValue = vehicle:FindFirstChild("Control_Values") and vehicle.Control_Values:FindFirstChild("Owner")
         if ownerValue and ownerValue:IsA("StringValue") and ownerValue.Value == Player.Name then
-            table.insert(MyVehicles, vehicle)
+            MyCarPath = vehicle
             print("Found player's vehicle: "..vehicle.Name)
         end
     end
-
-    task.wait(2)  
+    task.wait(2)  -- wait before checking again
 end
 local Window = Rayfield:CreateWindow({
    Name = "buggy erlc thing",
