@@ -2,18 +2,23 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Player = game:GetService("Players").LocalPlayer
 local VehicleFolder = workspace.Vehicles
 local MyCarPath = nil
-spawn(function()
-    while true do
-        MyCarPath = nil
-        for _, vehicle in ipairs(VehicleFolder:GetChildren()) do
-            local ownerValue = vehicle:FindFirstChild("Control_Values") and vehicle.Control_Values:FindFirstChild("Owner")
-            if ownerValue and ownerValue:IsA("StringValue") and ownerValue.Value == Player.Name then
-                MyCarPath = vehicle
-            end
+local function findPlayerVehicle()
+    for _, vehicle in ipairs(VehicleFolder:GetChildren()) do
+        local controlValues = vehicle:FindFirstChild("Control_Values")
+        local owner = controlValues and controlValues:FindFirstChild("Owner")
+        if owner and owner:IsA("StringValue") and owner.Value == Player.Name then
+            MyCarPath = vehicle
+            print("Found player's vehicle: "..vehicle.Name)
+            return MyCarPath
         end
-        task.wait(1) -- checks every second; adjust as needed
     end
-end)
+    MyCarPath = nil
+    warn("Player's vehicle not found!")
+    return nil
+end
+
+-- Example usage:
+findPlayerVehicle()  
 local Window = Rayfield:CreateWindow({
    Name = "buggy erlc thing",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -51,6 +56,12 @@ local Window = Rayfield:CreateWindow({
    }
 })
 local Tab = Window:CreateTab("ERLC", 4483362458) -- Title, Image
+local Button = Tab:CreateButton({
+   Name = "Detect Car",
+   Callback = function()
+      findPlayerVehicle()
+   end,
+})
 local Slider = Tab:CreateSlider({
    Name = "Change Length",
    Range = {-0.1, 4},
