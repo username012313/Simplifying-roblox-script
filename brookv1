@@ -47,10 +47,10 @@ local Slider = Tab:CreateSlider({
    Callback = function(Value)
         local vehname = Player.Name .. "Car"
         local wheelpath = workspace.Vehicles:WaitForChild(vehname).Chassis.Wheels
-        wheelpath.WheelBL.Cylindrical.MotorMaxTorque = Value*1000
-        wheelpath.WheelBR.Cylindrical.MotorMaxTorque = Value*1000
-        wheelpath.WheelFL.Cylindrical.MotorMaxTorque = Value*1000
-        wheelpath.WheelFR.Cylindrical.MotorMaxTorque = Value*1000
+        wheelpath.WheelBL.Cylindrical.MotorMaxTorque = Value
+        wheelpath.WheelBR.Cylindrical.MotorMaxTorque = Value
+        wheelpath.WheelFL.Cylindrical.MotorMaxTorque = Value
+        wheelpath.WheelFR.Cylindrical.MotorMaxTorque = Value
         wheelpath.WheelBL.Cylindrical.MotorMaxAngularAcceleration = Value
         wheelpath.WheelBR.Cylindrical.MotorMaxAngularAcceleration = Value
         wheelpath.WheelFL.Cylindrical.MotorMaxAngularAcceleration = Value
@@ -65,7 +65,7 @@ local Toggle = Tab:CreateToggle({
         local vehname = Player.Name .. "Car"
         local vehicle = workspace.Vehicles:FindFirstChild(vehname)
 
-        if vehicle then
+        if Value then
             local UUID = vehicle:GetAttribute("VehicleUuid")
             if not UUID then
                 warn("Vehicle UUID not found!")
