@@ -62,6 +62,10 @@ local SuspensionheightSlider = Tab:CreateSlider({
         localcar.DriveSeat.SpringFR.MinLength = Value
         localcar.DriveSeat.SpringRL.MinLength = Value
         localcar.DriveSeat.SpringRR.MinLength = Value
+        localcar.DriveSeat.SpringFL.FreeLength = Value
+        localcar.DriveSeat.SpringFR.FreeLength = Value
+        localcar.DriveSeat.SpringRL.FreeLength = Value
+        localcar.DriveSeat.SpringRR.FreeLength = Value
    end,
 })
 local Toggle = Tab:CreateToggle({
@@ -110,7 +114,7 @@ local Slider = Tab:CreateSlider({
    end,
 })
 local Button = Tab:CreateButton({
-    Name = "Reset all Springs to work with custom configs",
+    Name = "Make then work with custom heights (PRESS FIRST)",
    Callback = function()
         local carpath = workspace.Vehicles
         local player = game:GetService("Players").LocalPlayer
@@ -119,6 +123,10 @@ local Button = Tab:CreateButton({
         localcar.DriveSeat.SpringFR.MaxForce = math.huge
         localcar.DriveSeat.SpringRL.MaxForce = math.huge
         localcar.DriveSeat.SpringRR.MaxForce = math.huge
+        localcar.DriveSeat.SpringFL.SafetyConstraintFL:Destroy()
+        localcar.DriveSeat.SpringFR.SafetyConstraintFL:Destroy()
+        localcar.DriveSeat.SpringRL.SafetyConstraintFL:Destroy()
+        localcar.DriveSeat.SpringRR.SafetyConstraintFL:Destroy()
    end,
 })
 local Button = Tab:CreateButton({
@@ -135,6 +143,10 @@ local Button = Tab:CreateButton({
         localcar.DriveSeat.SpringFR.MinLength = 2
         localcar.DriveSeat.SpringRL.MinLength = 2
         localcar.DriveSeat.SpringRR.MinLength = 2
+        localcar.DriveSeat.SpringFL.FreeLength = 2
+        localcar.DriveSeat.SpringFR.FreeLength = 2
+        localcar.DriveSeat.SpringRL.FreeLength = 2
+        localcar.DriveSeat.SpringRR.FreeLength = 2
         localcar.DriveSeat.SpringFL.LimitsEnabled = false
         localcar.DriveSeat.SpringFR.LimitsEnabled = false
         localcar.DriveSeat.SpringRL.LimitsEnabled = false
@@ -150,7 +162,6 @@ local Button = Tab:CreateButton({
         localcar.DriveSeat.SpringFL.MaxForce = 80000 --80k
         localcar.DriveSeat.SpringFR.MaxForce = 80000
         localcar.DriveSeat.SpringRL.MaxForce = 80000
-        localcar.DriveSeat.SpringRR.MaxForce = 80000
-        
+        localcar.DriveSeat.SpringRR.MaxForce = 80000 
    end,
 })
