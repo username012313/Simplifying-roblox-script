@@ -203,6 +203,7 @@ local Slider = Tab:CreateSlider({
             localcar.DriveSeat.CylindricalConstraints.FR.MotorMaxAngularAcceleration = Value
             localcar.DriveSeat.CylindricalConstraints.RL.MotorMaxAngularAcceleration = Value
             localcar.DriveSeat.CylindricalConstraints.RR.MotorMaxAngularAcceleration = Value
+            task.wait(0.01)
             end
    end,
 })
