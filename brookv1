@@ -90,7 +90,7 @@ local Toggle = Tab:CreateToggle({
                     },
                     Performance = {
                         DriftStrength = 1.5,
-                        MaxSpeed = math.huge,
+                        MaxSpeed = 99999,
                         Turbo = 3
                     },
                     Owner = Player
