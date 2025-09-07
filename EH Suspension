@@ -114,7 +114,7 @@ local Slider = Tab:CreateSlider({
    end,
 })
 local Button = Tab:CreateButton({
-    Name = "Make then work with custom heights (PRESS FIRST)",
+    Name = "Make them work with custom heights (PRESS FIRST)",
    Callback = function()
         local carpath = workspace.Vehicles
         local player = game:GetService("Players").LocalPlayer
