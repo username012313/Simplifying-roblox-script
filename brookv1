@@ -55,6 +55,10 @@ local Slider = Tab:CreateSlider({
         wheelpath.WheelBR.Cylindrical.MotorMaxAngularAcceleration = Value
         wheelpath.WheelFL.Cylindrical.MotorMaxAngularAcceleration = Value
         wheelpath.WheelFR.Cylindrical.MotorMaxAngularAcceleration = Value
+        wheelpath.WheelBL.Cylindrical.AngularVelocity = Value
+        wheelpath.WheelBR.Cylindrical.AngularVelocity = Value
+        wheelpath.WheelFL.Cylindrical.AngularVelocity = Value
+        wheelpath.WheelFR.Cylindrical.AngularVelocity = Value
    end,
 })
 local Toggle = Tab:CreateToggle({
