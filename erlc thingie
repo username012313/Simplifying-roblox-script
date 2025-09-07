@@ -188,7 +188,7 @@ local Slider = Tab1:CreateSlider({
    end,
 })
 local Slider = Tab1:CreateSlider({
-   Name = "Change Length FR / MinLength",
+   Name = "Change Length FL / MinLength",
    Range = {-0.1, 50},
    Increment = 0.05,
    Suffix = "",
@@ -196,6 +196,30 @@ local Slider = Tab1:CreateSlider({
    Flag = "Slider10", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
         MyCarPath.Wheels.FL.Spring.MinLength = Value
+        
+   end,
+})
+local Slider = Tab1:CreateSlider({
+   Name = "Change Length FR / MinLength",
+   Range = {-0.1, 50},
+   Increment = 0.05,
+   Suffix = "",
+   CurrentValue = 2.2,
+   Flag = "Slider10", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        MyCarPath.Wheels.FR.Spring.MinLength = Value
+        
+   end,
+})
+local Slider = Tab1:CreateSlider({
+   Name = "Change Length RL / MinLength",
+   Range = {-0.1, 50},
+   Increment = 0.05,
+   Suffix = "",
+   CurrentValue = 2.2,
+   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        MyCarPath.Wheels.RL.Spring.MinLength = Value
         
    end,
 })
@@ -214,38 +238,38 @@ local Slider = Tab1:CreateSlider({
 local Tab2 = Window:CreateTab("Engine?", 4483362458)
 local HingeConstraintSpeedSlider = Tab2:CreateSlider({
    Name = "Acceleration changer",
-   Range = {-0.1, 50},
+   Range = {1, 10000},
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
    Flag = "Slider21", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-         MyCarPath.Wheels.FL:FindFirstChild("#AV").MotorMaxTorque = Value
-         MyCarPath.Wheels.FL:FindFirstChild("#AV").MotorMaxAcceleration = Value
-         MyCarPath.Wheels.FR:FindFirstChild("#AV").MotorMaxTorque = Value
-         MyCarPath.Wheels.FR:FindFirstChild("#AV").MotorMaxAcceleration = Value
-         MyCarPath.Wheels.RL:FindFirstChild("#AV").MotorMaxTorque = Value
-         MyCarPath.Wheels.RL:FindFirstChild("#AV").MotorMaxAcceleration = Value
-         MyCarPath.Wheels.RR:FindFirstChild("#AV").MotorMaxTorque = Value
-         MyCarPath.Wheels.RR:FindFirstChild("#AV").MotorMaxAcceleration = Value
+         MyCarPath.Wheels.FL:FindFirstChild("#AV").MotorMaxTorque = Value*10
+         MyCarPath.Wheels.FL:FindFirstChild("#AV").MotorMaxAcceleration = Value*10
+         MyCarPath.Wheels.FR:FindFirstChild("#AV").MotorMaxTorque = Value*10
+         MyCarPath.Wheels.FR:FindFirstChild("#AV").MotorMaxAcceleration = Value*10
+         MyCarPath.Wheels.RL:FindFirstChild("#AV").MotorMaxTorque = Value*10
+         MyCarPath.Wheels.RL:FindFirstChild("#AV").MotorMaxAcceleration = Value*10
+         MyCarPath.Wheels.RR:FindFirstChild("#AV").MotorMaxTorque = Value*10
+         MyCarPath.Wheels.RR:FindFirstChild("#AV").MotorMaxAcceleration = Value*10
    end,
 })
 local HingeConstraintBrakeSlider = Tab2:CreateSlider({
    Name = "Brake changer",
-   Range = {-0.1, 50},
+   Range = {1, 10000},
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
    Flag = "Slider20", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-         MyCarPath.Wheels.FL:FindFirstChild("#BV").MotorMaxTorque = Value
-         MyCarPath.Wheels.FL:FindFirstChild("#BV").MotorMaxAcceleration = Value
-         MyCarPath.Wheels.FR:FindFirstChild("#BV").MotorMaxTorque = Value
-         MyCarPath.Wheels.FR:FindFirstChild("#BV").MotorMaxAcceleration = Value
-         MyCarPath.Wheels.RL:FindFirstChild("#BV").MotorMaxTorque = Value
-         MyCarPath.Wheels.RL:FindFirstChild("#BV").MotorMaxAcceleration = Value
-         MyCarPath.Wheels.RR:FindFirstChild("#BV").MotorMaxTorque = Value
-         MyCarPath.Wheels.RR:FindFirstChild("#BV").MotorMaxAcceleration = Value
+         MyCarPath.Wheels.FL:FindFirstChild("#BV").MotorMaxTorque = Value*10
+         MyCarPath.Wheels.FL:FindFirstChild("#BV").MotorMaxAcceleration = Value*10
+         MyCarPath.Wheels.FR:FindFirstChild("#BV").MotorMaxTorque = Value*10
+         MyCarPath.Wheels.FR:FindFirstChild("#BV").MotorMaxAcceleration = Value*10
+         MyCarPath.Wheels.RL:FindFirstChild("#BV").MotorMaxTorque = Value*10
+         MyCarPath.Wheels.RL:FindFirstChild("#BV").MotorMaxAcceleration = Value*10
+         MyCarPath.Wheels.RR:FindFirstChild("#BV").MotorMaxTorque = Value*10
+         MyCarPath.Wheels.RR:FindFirstChild("#BV").MotorMaxAcceleration = Value*10
    end,
 })
 
