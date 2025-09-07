@@ -65,7 +65,7 @@ local SuspensionheightSlider = Tab:CreateSlider({
    end,
 })
 local Toggle = Tab:CreateToggle({
-   Name = "Make Springs adjustable",
+   Name = "Make Springs use Values",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
@@ -79,7 +79,7 @@ local Toggle = Tab:CreateToggle({
    end,
 })
 local Toggle = Tab:CreateToggle({
-   Name = "Make Car Not Stanced",
+   Name = "Enable Springs (air suspension??)",
    CurrentValue = true,
    Flag = "Toggle2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
@@ -107,9 +107,50 @@ local Slider = Tab:CreateSlider({
         localcar.DriveSeat.SpringFR.Stiffness = Value*1000
         localcar.DriveSeat.SpringRL.Stiffness = Value*1000
         localcar.DriveSeat.SpringRR.Stiffness = Value*1000
-        localcar.DriveSeat.SpringFL.MaxForce = Value*1000
-        localcar.DriveSeat.SpringFR.MaxForce = Value*1000
-        localcar.DriveSeat.SpringRL.MaxForce = Value*1000
-        localcar.DriveSeat.SpringRR.MaxForce = Value*1000
+   end,
+})
+local Button = Tab:CreateButton({
+    Name = "Reset all Springs to work with custom configs",
+   Callback = function()
+        local carpath = workspace.Vehicles
+        local player = game:GetService("Players").LocalPlayer
+        local localcar = carpath:WaitForChild(player.Name)
+        localcar.DriveSeat.SpringFL.MaxForce = math.huge
+        localcar.DriveSeat.SpringFR.MaxForce = math.huge
+        localcar.DriveSeat.SpringRL.MaxForce = math.huge
+        localcar.DriveSeat.SpringRR.MaxForce = math.huge
+   end,
+})
+local Button = Tab:CreateButton({
+    Name = "Reset all Springs",
+   Callback = function()
+        local carpath = workspace.Vehicles
+        local player = game:GetService("Players").LocalPlayer
+        local localcar = carpath:WaitForChild(player.Name)
+        localcar.DriveSeat.SpringFL.MaxLength = 2
+        localcar.DriveSeat.SpringFR.MaxLength = 2
+        localcar.DriveSeat.SpringRL.MaxLength = 2
+        localcar.DriveSeat.SpringRR.MaxLength = 2
+        localcar.DriveSeat.SpringFL.MinLength = 2
+        localcar.DriveSeat.SpringFR.MinLength = 2
+        localcar.DriveSeat.SpringRL.MinLength = 2
+        localcar.DriveSeat.SpringRR.MinLength = 2
+        localcar.DriveSeat.SpringFL.LimitsEnabled = false
+        localcar.DriveSeat.SpringFR.LimitsEnabled = false
+        localcar.DriveSeat.SpringRL.LimitsEnabled = false
+        localcar.DriveSeat.SpringRR.LimitsEnabled = false
+        localcar.DriveSeat.SpringFL.Enabled = true
+        localcar.DriveSeat.SpringFR.Enabled = true
+        localcar.DriveSeat.SpringRL.Enabled = true
+        localcar.DriveSeat.SpringRR.Enabled = true
+        localcar.DriveSeat.SpringFL.Stiffness = 4000
+        localcar.DriveSeat.SpringFR.Stiffness = 4000
+        localcar.DriveSeat.SpringRL.Stiffness = 4000
+        localcar.DriveSeat.SpringRR.Stiffness = 4000
+        localcar.DriveSeat.SpringFL.MaxForce = 80000 --80k
+        localcar.DriveSeat.SpringFR.MaxForce = 80000
+        localcar.DriveSeat.SpringRL.MaxForce = 80000
+        localcar.DriveSeat.SpringRR.MaxForce = 80000
+        
    end,
 })
