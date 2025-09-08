@@ -256,7 +256,7 @@ local Slider = Tab1:CreateSlider({
 local Tab2 = Window:CreateTab("rear and front idk", 4483362458)
 local LengthFSlider = Tab2:CreateSlider({
    Name = "Change Length Front",
-   Range = {-0.1, 50},
+   Range = {-0.5, 5},
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
@@ -270,7 +270,7 @@ local LengthFSlider = Tab2:CreateSlider({
 })
 local LengthRSlider = Tab2:CreateSlider({
    Name = "Change Length Front",
-   Range = {-0.1, 50},
+   Range = {-0.5, 5},
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
