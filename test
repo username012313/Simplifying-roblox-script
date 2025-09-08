@@ -53,7 +53,7 @@ local Input = SSetter:CreateInput({
    end,
 })
 local Input = SSetter:CreateInput({
-   Name = "Set Spring FL Path",
+   Name = "Set Spring FR Path",
    CurrentValue = "",
    PlaceholderText = "workspace.Vehicles.Car.Wheels.Spring",
    RemoveTextAfterFocusLost = false,
@@ -63,7 +63,7 @@ local Input = SSetter:CreateInput({
    end,
 })
 local Input = SSetter:CreateInput({
-   Name = "Set Spring FL Path",
+   Name = "Set Spring RL Path",
    CurrentValue = "",
    PlaceholderText = "workspace.Vehicles.Car.Wheels.Spring",
    RemoveTextAfterFocusLost = false,
@@ -73,7 +73,7 @@ local Input = SSetter:CreateInput({
    end,
 })
 local Input = SSetter:CreateInput({
-   Name = "Set Spring FL Path",
+   Name = "Set Spring RR Path",
    CurrentValue = "",
    PlaceholderText = "workspace.Vehicles.Car.Wheels.Spring",
    RemoveTextAfterFocusLost = false,
