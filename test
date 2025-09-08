@@ -19,7 +19,7 @@ local Window = Rayfield:CreateWindow({
    ConfigurationSaving = {
       Enabled = true,
       FolderName = nil,
-      FileName = "erlc"
+      FileName = nil
    },
    Discord = {
       Enabled = false, 
@@ -96,6 +96,34 @@ local LengthSlider = Tab:CreateSlider({
         MyCarPath.Wheels.RL.SuspensionGeometry.Spring.MinLength = Value
         MyCarPath.Wheels.RR.SuspensionGeometry.Spring.MinLength = Value
         
+   end,
+})
+local SpeedSlider = Tab:CreateSlider({
+   Name = "Speed",
+   Range = {-0.1, 50},
+   Increment = 0.05,
+   Suffix = "",
+   CurrentValue = 2.2,
+   Flag = "Slider1", 
+   Callback = function(Value)
+        MyCarPath.Wheels.FL:FindFirstChild("#AV") = Value
+        MyCarPath.Wheels.FR:FindFirstChild("#AV") = Value
+        MyCarPath.Wheels.RL:FindFirstChild("#AV") = Value
+        MyCarPath.Wheels.RR:FindFirstChild("#AV") = Value
+   end,
+})
+local BrakeSlider = Tab:CreateSlider({
+   Name = "Brake",
+   Range = {-0.1, 50},
+   Increment = 0.05,
+   Suffix = "",
+   CurrentValue = 2.2,
+   Flag = "Slider1", 
+   Callback = function(Value)
+        MyCarPath.Wheels.FL:FindFirstChild("#BV") = Value
+        MyCarPath.Wheels.FR:FindFirstChild("#BV") = Value
+        MyCarPath.Wheels.RL:FindFirstChild("#BV") = Value
+        MyCarPath.Wheels.RR:FindFirstChild("#BV") = Value
    end,
 })
 local FineLengthSlider = Tab:CreateSlider({
