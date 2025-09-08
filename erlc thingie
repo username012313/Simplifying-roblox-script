@@ -253,3 +253,32 @@ local Slider = Tab1:CreateSlider({
         
    end,
 })
+local Tab2 = Window:CreateTab("rear and front idk", 4483362458)
+local LengthFSlider = Tab2:CreateSlider({
+   Name = "Change Length Front",
+   Range = {-0.1, 50},
+   Increment = 0.05,
+   Suffix = "",
+   CurrentValue = 2.2,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        MyCarPath.Wheels.FL.Spring.MaxLength = Value
+        MyCarPath.Wheels.FR.Spring.MaxLength = Value
+        MyCarPath.Wheels.FL.Spring.MinLength = Value
+        MyCarPath.Wheels.FR.Spring.MinLength = Value        
+   end,
+})
+local LengthRSlider = Tab2:CreateSlider({
+   Name = "Change Length Front",
+   Range = {-0.1, 50},
+   Increment = 0.05,
+   Suffix = "",
+   CurrentValue = 2.2,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        MyCarPath.Wheels.RL.Spring.MaxLength = Value
+        MyCarPath.Wheels.RR.Spring.MaxLength = Value
+        MyCarPath.Wheels.RL.Spring.MinLength = Value
+        MyCarPath.Wheels.RR.Spring.MinLength = Value        
+   end,
+})
