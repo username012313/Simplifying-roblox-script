@@ -45,7 +45,7 @@ local SSetter = Window:CreateTab("Set Path", 4483362458) -- Title, Image
 local Input = SSetter:CreateInput({
    Name = "Set Spring FL Path",
    CurrentValue = "",
-   PlaceholderText = "workspace.Vehicles.Car.Wheels.Spring",
+   PlaceholderText = "workspace.Vehicles.Car.Wheels.FL.Spring",
    RemoveTextAfterFocusLost = false,
    Flag = "Input1",
    Callback = function(Text)
@@ -53,31 +53,31 @@ local Input = SSetter:CreateInput({
    end,
 })
 local Input = SSetter:CreateInput({
-   Name = "Set Spring FL Path",
+   Name = "Set Spring FR Path",
    CurrentValue = "",
-   PlaceholderText = "workspace.Vehicles.Car.Wheels.Spring",
+   PlaceholderText = "workspace.Vehicles.Car.Wheels.FR.Spring",
    RemoveTextAfterFocusLost = false,
-   Flag = "Input1",
+   Flag = "Input2",
    Callback = function(Text)
         MyCarPathFR = Text
    end,
 })
 local Input = SSetter:CreateInput({
-   Name = "Set Spring FL Path",
+   Name = "Set Spring RL Path",
    CurrentValue = "",
-   PlaceholderText = "workspace.Vehicles.Car.Wheels.Spring",
+   PlaceholderText = "workspace.Vehicles.Car.Wheels.RL.Spring",
    RemoveTextAfterFocusLost = false,
-   Flag = "Input1",
+   Flag = "Input3",
    Callback = function(Text)
         MyCarPathRL = Text
    end,
 })
 local Input = SSetter:CreateInput({
-   Name = "Set Spring FL Path",
+   Name = "Set Spring RR Path",
    CurrentValue = "",
-   PlaceholderText = "workspace.Vehicles.Car.Wheels.Spring",
+   PlaceholderText = "workspace.Vehicles.Car.Wheels.RR.Spring",
    RemoveTextAfterFocusLost = false,
-   Flag = "Input1",
+   Flag = "Input4",
    Callback = function(Text)
         MyCarPathRR = Text
    end,
@@ -140,10 +140,10 @@ local StiffnessSlider = Tab:CreateSlider({
    CurrentValue = 1,
    Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-   	    MyCarPath.Stiffness = Value
-        MyCarPath.Stiffness = Value
-        MyCarPath.Stiffness = Value
-        MyCarPath.Stiffness = Value
+   	    MyCarPathFL.Stiffness = Value
+        MyCarPathFR.Stiffness = Value
+        MyCarPathRL.Stiffness = Value
+        MyCarPathRR.Stiffness = Value
    end,
 })
 local DampingSlider = Tab:CreateSlider({
@@ -154,10 +154,10 @@ local DampingSlider = Tab:CreateSlider({
    CurrentValue = 10,
    Flag = "Slider3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-        MyCarPath.Damping = Value
-        MyCarPath.Damping = Value
-        MyCarPath.Damping = Value
-        MyCarPath.Damping = Value
+        MyCarPathFL.Damping = Value
+        MyCarPathFR.Damping = Value
+        MyCarPathRL.Damping = Value
+        MyCarPathRR.Damping = Value
    end,
 })
 local Limiter = Tab:CreateToggle({
@@ -165,10 +165,10 @@ local Limiter = Tab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-        MyCarPath.LimitsEnabled = Value
-        MyCarPath.LimitsEnabled = Value
-        MyCarPath.LimitsEnabled = Value
-        MyCarPath.LimitsEnabled = Value
+        MyCarPathFL.LimitsEnabled = Value
+        MyCarPathFR.LimitsEnabled = Value
+        MyCarPathRL.LimitsEnabled = Value
+        MyCarPathRR.LimitsEnabled = Value
    end,
 })
 local Tab1 = Window:CreateTab("Change Springs individualy", 4483362458) -- Title, Image
