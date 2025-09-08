@@ -77,22 +77,8 @@ local Respawn = LocalPlayr:CreateButton({
         Player.Character.Humanoid.Health = 0
    end,
 })
-local misc = Window:CreateTab("misc", "box") -- Title, Image
-local LoadIY = misc:CreateButton({
-   Name = "Execute Infinite yield",
-   Callback = function()
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-   end,
-})
-local KickLocalPlayer = misc:CreateButton({
-   Name = "Kick Yourself",
-   Callback = function()
-      Player:Kick("Kicked yourself")
-   end,
-})
 local Tab = Window:CreateTab("ERLC", car)
 local Label = Tab:CreateLabel("Spawn car first!", "circle-alert", Color3.fromRGB(255, 255, 255), true)
-
 local DetectButton = Tab:CreateButton({
    Name = "Detect Car",
    Callback = function()
@@ -323,5 +309,18 @@ local LengthRSlider = Tab2:CreateSlider({
         MyCarPath.Wheels.RR.Spring.MaxLength = Value
         MyCarPath.Wheels.RL.Spring.MinLength = Value
         MyCarPath.Wheels.RR.Spring.MinLength = Value        
+   end,
+})
+local misc = Window:CreateTab("misc", "box") -- Title, Image
+local LoadIY = misc:CreateButton({
+   Name = "Execute Infinite yield",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+   end,
+})
+local KickLocalPlayer = misc:CreateButton({
+   Name = "Kick Yourself",
+   Callback = function()
+      Player:Kick("Kicked yourself")
    end,
 })
