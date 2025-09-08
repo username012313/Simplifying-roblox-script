@@ -15,7 +15,7 @@ end
 findPlayerVehicle()
 local Window = Rayfield:CreateWindow({
    Name = "universsal suspensions / udc",
-   Icon = "car",
+   Icon = 0,
    LoadingTitle = "Rayfield Interface Suite",
    LoadingSubtitle = "by Sirius  // Version 0.0001a",
    ShowText = "Rayfield",
