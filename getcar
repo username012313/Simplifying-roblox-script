@@ -77,7 +77,7 @@ local Respawn = LocalPlayr:CreateButton({
         Player.Character.Humanoid.Health = 0
    end,
 })
-local Tab = Window:CreateTab("ERLC", car)
+local Tab = Window:CreateTab("ERLC", "car")
 local Label = Tab:CreateLabel("Spawn car first!", "circle-alert", Color3.fromRGB(255, 255, 255), true)
 local DetectButton = Tab:CreateButton({
    Name = "Detect Car",
