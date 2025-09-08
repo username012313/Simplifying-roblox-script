@@ -4,18 +4,13 @@ local VehicleFolder = workspace.Vehicles
 local MyCarPath = nil
 local function findPlayerVehicle()
     for _, vehicle in ipairs(VehicleFolder:GetChildren()) do
-        local VehicleConfig = vehicle:FindFirstChild("VehicleConfig") --change this if your game is different
-        local owner = VehicleConfig and VehicleConfig:FindFirstChild("OwnerUserID") -- same here
-        if owner and owner:IsA("NumberValue") and owner.Value == Player.UserId then --and here
-            MyCarPath = vehicle
-            print("The car found is:",MyCarPath,", in","workspace."..VehicleFolder.Name.."."..MyCarPath.Name)
-        end
-    end
+      if vehicle.Name = Player.Name then
+         MyCarPath = vehicle
 end
 findPlayerVehicle()
 local Window = Rayfield:CreateWindow({
    Name = "universsal suspensions / udc",
-   Icon = "car",
+   Icon = 0,
    LoadingTitle = "Rayfield Interface Suite",
    LoadingSubtitle = "by Sirius  // Version 0.0001a",
    ShowText = "Rayfield",
@@ -44,14 +39,46 @@ local Window = Rayfield:CreateWindow({
       Key = {"Hello"} 
    }
 })
-local Tab = Window:CreateTab("ERLC", car)
-local Label = Tab:CreateLabel("Spawn car first!", "circle-alert", Color3.fromRGB(255, 255, 255), true)
-
+local LocalPlayr = Window:CreateTab("LocalPlayer", 4483362458) -- Title, Image
+local WalkSpeedSlider = LocalPlayr:CreateSlider({
+   Name = "Walkspeed",
+   Range = {0, 500},
+   Increment = 1,
+   Suffix = "",
+   CurrentValue = 16,
+   Flag = "WalkSpeedSlider", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        while true do
+            Player.Character.Humanoid.WalkSpeed = Value
+            task.wait(0.1)
+            end
+   end,
+})
+local JumpPowerSlider = LocalPlayr:CreateSlider({
+   Name = "Jump Power",
+   Range = {0, 1000},
+   Increment = 1,
+   Suffix = "",
+   CurrentValue = 16,
+   Flag = "JumpPowerSlider", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      Player.Character.Humanoid.JumpPower = Value*5
+      
+   end,
+})
+local Respawn = LocalPlayr:CreateButton({
+   Name = "Respawn",
+   Callback = function()
+        Player.Character.Humanoid.Health = 0
+   end,
+})
+local Tab = Window:CreateTab("ERLC", "car")
+local Label = Tab:CreateLabel("Detect Car First!", "circle-alert", Color3.fromRGB(255, 255, 255), true)
 local DetectButton = Tab:CreateButton({
    Name = "Detect Car",
    Callback = function()
       findPlayerVehicle()
-    Label:Set("The car found is: "..MyCarPath.Name..", in ""workspace."..VehicleFolder.Name.."."..MyCarPath.Name, "info", Color3.fromRGB(255, 255, 255), false) 
+    Label:Set("The car found is: "..MyCarPath.Name..", in ".."workspace."..VehicleFolder.Name.."."..MyCarPath.Name, "info", Color3.fromRGB(255, 255, 255), false)
    end,
 })
 local LengthSlider = Tab:CreateSlider({
@@ -90,6 +117,20 @@ local FineLengthSlider = Tab:CreateSlider({
         MyCarPath.Wheels.RL.Spring.MinLength = Value
         MyCarPath.Wheels.RR.Spring.MinLength = Value
         
+   end,
+})
+local FineLengthSlider = Tab:CreateSlider({
+   Name = "Change Length / fine",
+   Range = {0, math.huge},
+   Increment = 0.05,
+   Suffix = "",
+   CurrentValue = 2.2,
+   Flag = "Slider1", 
+   Callback = function(Value)
+        MyCarPath.Wheels.FL.Spring.MaxForce = Value
+        MyCarPath.Wheels.FR.Spring.MaxForce = Value
+        MyCarPath.Wheels.RL.Spring.MaxForce = Value
+        MyCarPath.Wheels.RR.Spring.MaxForce = Value
    end,
 })
 local VisibilityToggle = Tab:CreateToggle({
@@ -277,5 +318,18 @@ local LengthRSlider = Tab2:CreateSlider({
         MyCarPath.Wheels.RR.Spring.MaxLength = Value
         MyCarPath.Wheels.RL.Spring.MinLength = Value
         MyCarPath.Wheels.RR.Spring.MinLength = Value        
+   end,
+})
+local misc = Window:CreateTab("misc", "box") -- Title, Image
+local LoadIY = misc:CreateButton({
+   Name = "Execute Infinite yield",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+   end,
+})
+local KickLocalPlayer = misc:CreateButton({
+   Name = "Kick Yourself",
+   Callback = function()
+      Player:Kick("Kicked yourself")
    end,
 })
