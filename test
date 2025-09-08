@@ -87,14 +87,14 @@ local LengthSlider = Tab:CreateSlider({
    CurrentValue = 2.2,
    Flag = "Slider1", 
    Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MaxLength = Value
-        MyCarPath.Wheels.FR.Spring.MaxLength = Value
-        MyCarPath.Wheels.RL.Spring.MaxLength = Value
-        MyCarPath.Wheels.RR.Spring.MaxLength = Value
-        MyCarPath.Wheels.FL.Spring.MinLength = Value
-        MyCarPath.Wheels.FR.Spring.MinLength = Value
-        MyCarPath.Wheels.RL.Spring.MinLength = Value
-        MyCarPath.Wheels.RR.Spring.MinLength = Value
+        MyCarPath.Wheels.FL.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.FR.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.RL.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.RR.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.FL.SuspensionGeometry.Spring.MinLength = Value
+        MyCarPath.Wheels.FR.SuspensionGeometry.Spring.MinLength = Value
+        MyCarPath.Wheels.RL.SuspensionGeometry.Spring.MinLength = Value
+        MyCarPath.Wheels.RR.SuspensionGeometry.Spring.MinLength = Value
         
    end,
 })
@@ -106,14 +106,14 @@ local FineLengthSlider = Tab:CreateSlider({
    CurrentValue = 2.2,
    Flag = "Slider1", 
    Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MaxLength = Value
-        MyCarPath.Wheels.FR.Spring.MaxLength = Value
-        MyCarPath.Wheels.RL.Spring.MaxLength = Value
-        MyCarPath.Wheels.RR.Spring.MaxLength = Value
-        MyCarPath.Wheels.FL.Spring.MinLength = Value
-        MyCarPath.Wheels.FR.Spring.MinLength = Value
-        MyCarPath.Wheels.RL.Spring.MinLength = Value
-        MyCarPath.Wheels.RR.Spring.MinLength = Value
+        MyCarPath.Wheels.FL.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.FR.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.RL.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.RR.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.FL.SuspensionGeometry.Spring.MinLength = Value
+        MyCarPath.Wheels.FR.SuspensionGeometry.Spring.MinLength = Value
+        MyCarPath.Wheels.RL.SuspensionGeometry.Spring.MinLength = Value
+        MyCarPath.Wheels.RR.SuspensionGeometry.Spring.MinLength = Value
         
    end,
 })
@@ -125,10 +125,10 @@ local FineLengthSlider = Tab:CreateSlider({
    CurrentValue = 2.2,
    Flag = "Slider1", 
    Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MaxForce = Value
-        MyCarPath.Wheels.FR.Spring.MaxForce = Value
-        MyCarPath.Wheels.RL.Spring.MaxForce = Value
-        MyCarPath.Wheels.RR.Spring.MaxForce = Value
+        MyCarPath.Wheels.FL.SuspensionGeometry.Spring.MaxForce = Value
+        MyCarPath.Wheels.FR.SuspensionGeometry.Spring.MaxForce = Value
+        MyCarPath.Wheels.RL.SuspensionGeometry.Spring.MaxForce = Value
+        MyCarPath.Wheels.RR.SuspensionGeometry.Spring.MaxForce = Value
    end,
 })
 local VisibilityToggle = Tab:CreateToggle({
@@ -136,21 +136,10 @@ local VisibilityToggle = Tab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", 
    Callback = function(Value)
-            MyCarPath.Wheels.FL.Spring.Visible = Value
-            MyCarPath.Wheels.FR.Spring.Visible = Value
-            MyCarPath.Wheels.RL.Spring.Visible = Value
-            MyCarPath.Wheels.RR.Spring.Visible = Value
-   end,
-})
-local BugToggle = Tab:CreateToggle({
-   Name = "Make tires not bug out",
-   CurrentValue = false,
-   Flag = "Toggle1",
-   Callback = function(Value)
-            MyCarPath.Wheels.FL:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
-            MyCarPath.Wheels.FR:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
-            MyCarPath.Wheels.RL:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
-            MyCarPath.Wheels.RR:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
+            MyCarPath.Wheels.FL.SuspensionGeometry.Spring.Visible = Value
+            MyCarPath.Wheels.FR.SuspensionGeometry.Spring.Visible = Value
+            MyCarPath.Wheels.RL.SuspensionGeometry.Spring.Visible = Value
+            MyCarPath.Wheels.RR.SuspensionGeometry.Spring.Visible = Value
    end,
 })
 local StiffnessSlider = Tab:CreateSlider({
@@ -161,10 +150,10 @@ local StiffnessSlider = Tab:CreateSlider({
    CurrentValue = 1,
    Flag = "Slider2", 
    Callback = function(Value)
-   	    MyCarPath.Wheels.FL.Spring.Stiffness = Value
-        MyCarPath.Wheels.FR.Spring.Stiffness = Value
-        MyCarPath.Wheels.RL.Spring.Stiffness = Value
-        MyCarPath.Wheels.RR.Spring.Stiffness = Value
+   	  MyCarPath.Wheels.FL.SuspensionGeometry.Spring.Stiffness = Value
+        MyCarPath.Wheels.FR.SuspensionGeometry.Spring.Stiffness = Value
+        MyCarPath.Wheels.RL.SuspensionGeometry.Spring.Stiffness = Value
+        MyCarPath.Wheels.RR.SuspensionGeometry.Spring.Stiffness = Value
    end,
 })
 local DampingSlider = Tab:CreateSlider({
@@ -175,10 +164,10 @@ local DampingSlider = Tab:CreateSlider({
    CurrentValue = 10,
    Flag = "Slider3",
    Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.Damping = Value
-        MyCarPath.Wheels.FR.Spring.Damping = Value
-        MyCarPath.Wheels.RL.Spring.Damping = Value
-        MyCarPath.Wheels.RR.Spring.Damping = Value
+        MyCarPath.Wheels.FL.SuspensionGeometry.Spring.Damping = Value
+        MyCarPath.Wheels.FR.SuspensionGeometry.Spring.Damping = Value
+        MyCarPath.Wheels.RL.SuspensionGeometry.Spring.Damping = Value
+        MyCarPath.Wheels.RR.SuspensionGeometry.Spring.Damping = Value
    end,
 })
 local Limiter = Tab:CreateToggle({
@@ -186,107 +175,10 @@ local Limiter = Tab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", 
    Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.LimitsEnabled = Value
-        MyCarPath.Wheels.FR.Spring.LimitsEnabled = Value
-        MyCarPath.Wheels.RL.Spring.LimitsEnabled = Value
-        MyCarPath.Wheels.RR.Spring.LimitsEnabled = Value
-   end,
-})
-local Tab1 = Window:CreateTab("Change Springs individualy", "car") 
-local Slider1 = Tab1:CreateSlider({
-   Name = "Change Length FL / MaxLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider1",
-   Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MaxLength = Value
-        
-   end,
-})
-local Slider2= Tab1:CreateSlider({
-   Name = "Change Length FR / MaxLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider11",
-   Callback = function(Value)
-        MyCarPath.Wheels.FR.Spring.MaxLength = Value
-        
-   end,
-})
-local Slider3 = Tab1:CreateSlider({
-   Name = "Change Length RL / MaxLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider12", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.RL.Spring.MaxLength = Value
-        
-   end,
-})
-local Slider4 = Tab1:CreateSlider({
-   Name = "Change Length RR / MaxLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider13", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.RR.Spring.MaxLength = Value
-        
-   end,
-})
-local Slider5 = Tab1:CreateSlider({
-   Name = "Change Length FL / MinLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider10", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MinLength = Value
-        
-   end,
-})
-local Slider = Tab1:CreateSlider({
-   Name = "Change Length FR / MinLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider10", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.FR.Spring.MinLength = Value
-        
-   end,
-})
-local Slider = Tab1:CreateSlider({
-   Name = "Change Length RL / MinLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.RL.Spring.MinLength = Value
-        
-   end,
-})
-local Slider = Tab1:CreateSlider({
-   Name = "Change Length RR / MinLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.RR.Spring.MinLength = Value
-        
+        MyCarPath.Wheels.FL.SuspensionGeometry.Spring.LimitsEnabled = Value
+        MyCarPath.Wheels.FR.SuspensionGeometry.Spring.LimitsEnabled = Value
+        MyCarPath.Wheels.RL.SuspensionGeometry.Spring.LimitsEnabled = Value
+        MyCarPath.Wheels.RR.SuspensionGeometry.Spring.LimitsEnabled = Value
    end,
 })
 local Tab2 = Window:CreateTab("rear and front idk", "car")
@@ -298,10 +190,10 @@ local LengthFSlider = Tab2:CreateSlider({
    CurrentValue = 2.2,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MaxLength = Value
-        MyCarPath.Wheels.FR.Spring.MaxLength = Value
-        MyCarPath.Wheels.FL.Spring.MinLength = Value
-        MyCarPath.Wheels.FR.Spring.MinLength = Value        
+        MyCarPath.Wheels.FL.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.FR.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.FL.SuspensionGeometry.Spring.MinLength = Value
+        MyCarPath.Wheels.FR.SuspensionGeometry.Spring.MinLength = Value        
    end,
 })
 local LengthRSlider = Tab2:CreateSlider({
@@ -312,10 +204,10 @@ local LengthRSlider = Tab2:CreateSlider({
    CurrentValue = 2.2,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-        MyCarPath.Wheels.RL.Spring.MaxLength = Value
-        MyCarPath.Wheels.RR.Spring.MaxLength = Value
-        MyCarPath.Wheels.RL.Spring.MinLength = Value
-        MyCarPath.Wheels.RR.Spring.MinLength = Value        
+        MyCarPath.Wheels.RL.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.RR.SuspensionGeometry.Spring.MaxLength = Value
+        MyCarPath.Wheels.RL.SuspensionGeometry.Spring.MinLength = Value
+        MyCarPath.Wheels.RR.SuspensionGeometry.Spring.MinLength = Value        
    end,
 })
 local misc = Window:CreateTab("misc", "box") -- Title, Image
