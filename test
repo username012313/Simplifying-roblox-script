@@ -7,7 +7,7 @@ local MyCarPathRL = nil
 local MyCarPathRR = nil
 
 -- Example usage:
-findPlayerVehicle()  
+ 
 local Window = Rayfield:CreateWindow({
    Name = "erlc suspensions / udc",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
