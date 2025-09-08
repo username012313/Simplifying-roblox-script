@@ -3,10 +3,7 @@ local Player = game:GetService("Players").LocalPlayer
 local VehicleFolder = workspace.Vehicles
 local MyCarPath = nil
 local function findPlayerVehicle()
-    for _, vehicle in ipairs(VehicleFolder:GetChildren()) do
-      if vehicle.Name = Player.Name then
-         MyCarPath = vehicle
-     end
+   MyCarPath = VehicleFolder:WaitForChild(Player.Name)
 end
 findPlayerVehicle()
 local Window = Rayfield:CreateWindow({
