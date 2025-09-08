@@ -78,12 +78,12 @@ local Respawn = LocalPlayr:CreateButton({
    end,
 })
 local Tab = Window:CreateTab("ERLC", "car")
-local Label = Tab:CreateLabel("Spawn car first!", "circle-alert", Color3.fromRGB(255, 255, 255), true)
+local Label = Tab:CreateLabel("Detect Car First!", "circle-alert", Color3.fromRGB(255, 255, 255), true)
 local DetectButton = Tab:CreateButton({
    Name = "Detect Car",
    Callback = function()
       findPlayerVehicle()
-    Label:Set("The car found is: "..MyCarPath.Name..", in ".."workspace."..VehicleFolder.Name.."."..MyCarPath.Name, "info", Color3.fromRGB(255, 255, 255), false) 
+    Label:Set("The car found is: "..MyCarPath.Name..", in ".."workspace."..VehicleFolder.Name.."."..MyCarPath.Name, "info", Color3.fromRGB(255, 255, 255), false)
    end,
 })
 local LengthSlider = Tab:CreateSlider({
@@ -122,6 +122,20 @@ local FineLengthSlider = Tab:CreateSlider({
         MyCarPath.Wheels.RL.Spring.MinLength = Value
         MyCarPath.Wheels.RR.Spring.MinLength = Value
         
+   end,
+})
+local FineLengthSlider = Tab:CreateSlider({
+   Name = "Change Length / fine",
+   Range = {0, math.huge},
+   Increment = 0.05,
+   Suffix = "",
+   CurrentValue = 2.2,
+   Flag = "Slider1", 
+   Callback = function(Value)
+        MyCarPath.Wheels.FL.Spring.MaxForce = Value
+        MyCarPath.Wheels.FR.Spring.MaxForce = Value
+        MyCarPath.Wheels.RL.Spring.MaxForce = Value
+        MyCarPath.Wheels.RR.Spring.MaxForce = Value
    end,
 })
 local VisibilityToggle = Tab:CreateToggle({
