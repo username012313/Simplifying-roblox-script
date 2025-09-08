@@ -4,9 +4,9 @@ local VehicleFolder = workspace.Vehicles
 local MyCarPath = nil
 local function findPlayerVehicle()
     for _, vehicle in ipairs(VehicleFolder:GetChildren()) do
-        local VehicleConfig = vehicle:FindFirstChild("VehicleConfig")
-        local owner = VehicleConfig and VehicleConfig:FindFirstChild("OwnerUserID")
-        if owner and owner:IsA("NumberValue") and owner.Value == Player.UserId then
+        local VehicleConfig = vehicle:FindFirstChild("VehicleConfig") --change this if your game is different
+        local owner = VehicleConfig and VehicleConfig:FindFirstChild("OwnerUserID") -- same here
+        if owner and owner:IsA("NumberValue") and owner.Value == Player.UserId then --and here
             MyCarPath = vehicle
             print("The car found is:",MyCarPath,", in","workspace."..VehicleFolder.Name.."."..MyCarPath.Name)
         end
@@ -14,49 +14,44 @@ local function findPlayerVehicle()
 end
 findPlayerVehicle()
 local Window = Rayfield:CreateWindow({
-   Name = "erlc suspensions / udc",
-   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   Name = "universsal suspensions / udc",
+   Icon = "car",
    LoadingTitle = "Rayfield Interface Suite",
    LoadingSubtitle = "by Sirius  // Version 0.0001a",
-   ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
-   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
-
-   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
-
+   ShowText = "Rayfield",
+   Theme = "Default", 
+    ToggleUIKeybind = "K", 
    DisableRayfieldPrompts = false,
-   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
-
+   DisableBuildWarnings = false, 
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
+      FolderName = nil,
       FileName = "erlc"
    },
-
    Discord = {
-      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+      Enabled = false, 
+      Invite = "noinvitelink",
+      RememberJoins = true
    },
-
-   KeySystem = false, -- Set this to true to use our key system
+   KeySystem = false, 
    KeySettings = {
       Title = "Untitled",
       Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
-      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Note = "No method of obtaining the key is provided",
+      FileName = "Key", 
+      SaveKey = true, 
+      GrabKeyFromSite = false, 
+      Key = {"Hello"} 
    }
 })
-local Tab = Window:CreateTab("ERLC", 4483362458) -- Title, Image
-local Label = Tab:CreateLabel("Spawn car first!", 4483362458, Color3.fromRGB(255, 255, 255), true)
+local Tab = Window:CreateTab("ERLC", car)
+local Label = Tab:CreateLabel("Spawn car first!", "circle-alert", Color3.fromRGB(255, 255, 255), true)
 
 local DetectButton = Tab:CreateButton({
    Name = "Detect Car",
    Callback = function()
       findPlayerVehicle()
-    Label:Set("The car found is: "..MyCarPath.Name..", in ".."workspace."..VehicleFolder.Name.."."..MyCarPath.Name, 4483362458, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+    Label:Set("The car found is: "..MyCarPath.Name..", in ""workspace."..VehicleFolder.Name.."."..MyCarPath.Name, "info", Color3.fromRGB(255, 255, 255), false) 
    end,
 })
 local LengthSlider = Tab:CreateSlider({
@@ -65,7 +60,7 @@ local LengthSlider = Tab:CreateSlider({
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider1", 
    Callback = function(Value)
         MyCarPath.Wheels.FL.Spring.MaxLength = Value
         MyCarPath.Wheels.FR.Spring.MaxLength = Value
@@ -84,7 +79,7 @@ local FineLengthSlider = Tab:CreateSlider({
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider1", 
    Callback = function(Value)
         MyCarPath.Wheels.FL.Spring.MaxLength = Value
         MyCarPath.Wheels.FR.Spring.MaxLength = Value
@@ -100,7 +95,7 @@ local FineLengthSlider = Tab:CreateSlider({
 local VisibilityToggle = Tab:CreateToggle({
    Name = "Make Springs visible (clientside)",
    CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Toggle1", 
    Callback = function(Value)
             MyCarPath.Wheels.FL.Spring.Visible = Value
             MyCarPath.Wheels.FR.Spring.Visible = Value
@@ -111,7 +106,7 @@ local VisibilityToggle = Tab:CreateToggle({
 local BugToggle = Tab:CreateToggle({
    Name = "Make tires not bug out",
    CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Toggle1",
    Callback = function(Value)
             MyCarPath.Wheels.FL:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
             MyCarPath.Wheels.FR:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
@@ -125,7 +120,7 @@ local StiffnessSlider = Tab:CreateSlider({
    Increment = 0.1,
    Suffix = "",
    CurrentValue = 1,
-   Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider2", 
    Callback = function(Value)
    	    MyCarPath.Wheels.FL.Spring.Stiffness = Value
         MyCarPath.Wheels.FR.Spring.Stiffness = Value
@@ -139,7 +134,7 @@ local DampingSlider = Tab:CreateSlider({
    Increment = 5,
    Suffix = "",
    CurrentValue = 10,
-   Flag = "Slider3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider3",
    Callback = function(Value)
         MyCarPath.Wheels.FL.Spring.Damping = Value
         MyCarPath.Wheels.FR.Spring.Damping = Value
@@ -150,7 +145,7 @@ local DampingSlider = Tab:CreateSlider({
 local Limiter = Tab:CreateToggle({
    Name = "Disable/Enable Spring Limits",
    CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Toggle1", 
    Callback = function(Value)
         MyCarPath.Wheels.FL.Spring.LimitsEnabled = Value
         MyCarPath.Wheels.FR.Spring.LimitsEnabled = Value
@@ -158,14 +153,14 @@ local Limiter = Tab:CreateToggle({
         MyCarPath.Wheels.RR.Spring.LimitsEnabled = Value
    end,
 })
-local Tab1 = Window:CreateTab("Change Springs individualy", 4483362458) -- Title, Image
+local Tab1 = Window:CreateTab("Change Springs individualy", "car") 
 local Slider1 = Tab1:CreateSlider({
    Name = "Change Length FL / MaxLength",
    Range = {-0.1, 50},
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider1",
    Callback = function(Value)
         MyCarPath.Wheels.FL.Spring.MaxLength = Value
         
@@ -177,7 +172,7 @@ local Slider2= Tab1:CreateSlider({
    Increment = 0.05,
    Suffix = "",
    CurrentValue = 2.2,
-   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider11",
    Callback = function(Value)
         MyCarPath.Wheels.FR.Spring.MaxLength = Value
         
@@ -255,7 +250,7 @@ local Slider = Tab1:CreateSlider({
         
    end,
 })
-local Tab2 = Window:CreateTab("rear and front idk", 4483362458)
+local Tab2 = Window:CreateTab("rear and front idk", "car")
 local LengthFSlider = Tab2:CreateSlider({
    Name = "Change Length Front",
    Range = {-0.5, 5},
