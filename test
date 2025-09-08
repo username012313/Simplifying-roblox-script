@@ -110,20 +110,10 @@ local SpeedSlider = Tab:CreateSlider({
         MyCarPath.Wheels.FR:FindFirstChild("#AV").MotorMaxTorque = Value
         MyCarPath.Wheels.RL:FindFirstChild("#AV").MotorMaxTorque = Value
         MyCarPath.Wheels.RR:FindFirstChild("#AV").MotorMaxTorque = Value
-   end,
-})
-local BrakeSlider = Tab:CreateSlider({
-   Name = "Brake",
-   Range = {0, 20000},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider1", 
-   Callback = function(Value)
-        MyCarPath.Wheels.FL:FindFirstChild("#BV").MotorMaxTorque = Value
-        MyCarPath.Wheels.FR:FindFirstChild("#BV").MotorMaxTorque = Value
-        MyCarPath.Wheels.RL:FindFirstChild("#BV").MotorMaxTorque = Value
-        MyCarPath.Wheels.RR:FindFirstChild("#BV").MotorMaxTorque = Value
+        MyCarPath.Wheels.FL:FindFirstChild("#AV").AngularVelocity = Value
+        MyCarPath.Wheels.FR:FindFirstChild("#AV").AngularVelocity = Value
+        MyCarPath.Wheels.RL:FindFirstChild("#AV").AngularVelocity = Value
+        MyCarPath.Wheels.RR:FindFirstChild("#AV").AngularVelocity = Value
    end,
 })
 local FineLengthSlider = Tab:CreateSlider({
