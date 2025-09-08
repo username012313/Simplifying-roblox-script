@@ -8,6 +8,7 @@ local function findPlayerVehicle()
         local owner = VehicleConfig and VehicleConfig:FindFirstChild("OwnerUserID")
         if owner and owner:IsA("NumberValue") and owner.Value == Player.UserId then
             MyCarPath = vehicle
+            print("found car -- DEBUG")
         end
     end
 end
