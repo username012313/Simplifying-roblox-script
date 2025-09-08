@@ -4,7 +4,7 @@ local VehicleFolder = workspace.Vehicles
 local MyCarPathFL = nil
 local MyCarPathFR = nil
 local MyCarPathRL = nil
-local MyCarPathRR = nil
+local MyCarPathRR = nil  
 local Window = Rayfield:CreateWindow({
    Name = "erlc suspensions / udc",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -40,7 +40,7 @@ local Window = Rayfield:CreateWindow({
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
-})
+}) -- START SPRING INPUT PATH
 local SSetter = Window:CreateTab("Set Path", 4483362458) -- Title, Image
 local Input = SSetter:CreateInput({
    Name = "Set Spring FL Path",
@@ -53,7 +53,7 @@ local Input = SSetter:CreateInput({
    end,
 })
 local Input = SSetter:CreateInput({
-   Name = "Set Spring FR Path",
+   Name = "Set Spring FL Path",
    CurrentValue = "",
    PlaceholderText = "workspace.Vehicles.Car.Wheels.Spring",
    RemoveTextAfterFocusLost = false,
@@ -63,7 +63,7 @@ local Input = SSetter:CreateInput({
    end,
 })
 local Input = SSetter:CreateInput({
-   Name = "Set Spring RL Path",
+   Name = "Set Spring FL Path",
    CurrentValue = "",
    PlaceholderText = "workspace.Vehicles.Car.Wheels.Spring",
    RemoveTextAfterFocusLost = false,
@@ -73,7 +73,7 @@ local Input = SSetter:CreateInput({
    end,
 })
 local Input = SSetter:CreateInput({
-   Name = "Set Spring RR Path",
+   Name = "Set Spring FL Path",
    CurrentValue = "",
    PlaceholderText = "workspace.Vehicles.Car.Wheels.Spring",
    RemoveTextAfterFocusLost = false,
