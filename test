@@ -56,7 +56,7 @@ local DetectButton = Tab:CreateButton({
    Name = "Detect Car",
    Callback = function()
       findPlayerVehicle()
-    Label:Set(["The car found is:",MyCarPath,", in","workspace."..VehicleFolder.Name.."."..MyCarPath.Name], 4483362458, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+    Label:Set("The car found is: "..MyCarPath.Name..", in ".."workspace."..VehicleFolder.Name.."."..MyCarPath.Name, 4483362458, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
    end,
 })
 local LengthSlider = Tab:CreateSlider({
