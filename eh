@@ -77,14 +77,11 @@ local CFrameWSToggle = Tab:CreateToggle({
 local Tab2 = Window:CreateTab("Car", 4483362458)
 local SpeedCamButton = Tab2:CreateButton({
 	Name = "No Speedtraps",
-	Callback = function(Value)
-		running = Value
-		if running then
-            task.spawn(function()
-		       workspace.SpeedCameras:Destroy()
-               workspace.SpeedZones:Destroy()
-            end)
-        end
+	Callback = function()
+        task.spawn(function()
+		    workspace.SpeedCameras:Destroy()
+            workspace.SpeedZones:Destroy()
+        end)
 	end,
 })
 local GetInCarButton = Tab2:CreateButton({
@@ -151,7 +148,7 @@ local CarInvincibiltyToggle = Tab2:CreateToggle({
 local CarInfiniteFuel = Tab2:CreateToggle({
 	Name = "Infinite Fuel",
 	CurrentValue = false,
-	Flag = "Toggle2",
+	Flag = "Toggle9",
 	Callback = function(Value)
 		running = Value
 		if running then
