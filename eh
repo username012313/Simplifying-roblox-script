@@ -76,8 +76,6 @@ local CFrameWSToggle = Tab:CreateToggle({
 local Tab2 = Window:CreateTab("Car", 4483362458)
 local SpeedCamButton = Tab2:CreateButton({
 	Name = "No Speedtraps",
-	CurrentValue = false,
-	Flag = "Toggle3",
 	Callback = function(Value)
 		running = Value
 		if running then
@@ -95,7 +93,6 @@ local GetInCarButton = Tab2:CreateButton({
 	        workspace:WaitForChild(game:GetService("Players").LocalPlayer.Name):PivotTo(workspace.Vehicles:WaitForChild(game:GetService("Players").LocalPlayer.Name).DriveSeat.CFrame)
 	        task.wait()
              game:GetService("ReplicatedStorage"):WaitForChild("Bnl"):WaitForChild("fdffc7c3-4c83-4693-8a33-380ed2d60083"):FireServer(workspace:WaitForChild("Vehicles"):WaitForChild(game:GetService("Players").LocalPlayer.Name):WaitForChild("DriveSeat"),"Oj2",false)
-             task.wait()
         end
    end,
 })
