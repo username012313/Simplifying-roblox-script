@@ -157,7 +157,7 @@ local CarInfiniteFuel = Tab2:CreateToggle({
 		if running then
 			local car = workspace.Vehicles:FindFirstChild(Player.Name)
 			if not car then return end
-			connection = car:GetAttributeChangedSignal("currentFuel"):Connect(function()
+			connection == car:GetAttributeChangedSignal("currentFuel"):Connect(function()
 				if not running then return end -- stop if toggle is off
 				if Fuel = car:GetAttribute("currentFuel") and Fuel < 10 then
                     car:SetAttribute("currentFuel", 9e99)
