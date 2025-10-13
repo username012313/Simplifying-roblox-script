@@ -2,6 +2,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Player = game:GetService("Players").LocalPlayer
 local CFrameWS = 2
 local Carspeed = 2
+local TweenSpeed = 15
 local Window = Rayfield:CreateWindow({
    Name = "Emergency Hamburg Hub!!",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -142,7 +143,30 @@ local CarInvincibiltyToggle = Tab2:CreateToggle({
 						Toggles.Toggle2:Set(true)
 					end
 				end
+            car:SetAttribute("IsOn", true)
 			end)
 		end
 	end,
+})
+local CarInfiniteFuel = Tab2:CreateToggle({
+	Name = "Infinite Fuel",
+	CurrentValue = false,
+	Flag = "Toggle2",
+	Callback = function(Value)
+		running = Value
+		if running then
+			local car = workspace.Vehicles:FindFirstChild(Player.Name)
+			if not car then return end
+			connection = car:GetAttributeChangedSignal("currentFuel"):Connect(function()
+				if not running then return end -- stop if toggle is off
+				if Fuel = car:GetAttribute("currentFuel") and Fuel < 10 then
+                    car:SetAttribute("currentFuel", 9e99)
+                    if Toggles and Toggles.Toggle2 and not Toggles.Toggle2.CurrentValue then
+                        Toggles.Toggle2:Set(true)
+                    end
+				end
+            car:SetAttribute("currentFuel", 9e99)
+			end)
+		end
+    end,
 })
