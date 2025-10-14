@@ -145,28 +145,6 @@ local CarInvincibiltyToggle = Tab2:CreateToggle({
 		end
 	end,
 })
-local CarInfiniteFuel = Tab2:CreateToggle({
-	Name = "Infinite Fuel",
-	CurrentValue = false,
-	Flag = "Toggle9",
-	Callback = function(Value)
-		running = Value
-		if running then
-			local car = workspace.Vehicles:FindFirstChild(Player.Name)
-			if not car then return end
-			connection == car:GetAttributeChangedSignal("currentFuel"):Connect(function()
-				if not running then return end -- stop if toggle is off
-				if Fuel = car:GetAttribute("currentFuel") and Fuel < 10 then
-                    car:SetAttribute("currentFuel", 9e99)
-                    if Toggles and Toggles.Toggle2 and not Toggles.Toggle2.CurrentValue then
-                        Toggles.Toggle2:Set(true)
-                    end
-				end
-            car:SetAttribute("currentFuel", 9e99)
-			end)
-		end
-    end,
-})
 local Tab3 = Window:CreateTab("Automation", 4483362458)
 local TweenSpeedSlider = Tab3:CreateSlider({
    Name = "Set Time",
@@ -177,7 +155,6 @@ local TweenSpeedSlider = Tab3:CreateSlider({
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
        TweenSpeed = Value
-       TweenTimeToggle:Set(false)
    end,
 })
 local TweenTimeToggle = Tab3:CreateToggle({
@@ -188,13 +165,7 @@ local TweenTimeToggle = Tab3:CreateToggle({
 		running = Value
 		if running then
 			TweenSpeed = 0
-            Rayfield:Notify({
-                Title = "Tweens",
-                Content = "Please dont move the Time slider while this is enabled",
-                Duration = 6.5,
-                Image = 4483362458,
-            })
-            TweenSpeedSlider:Set(0) -- The new slider integer value
+            		TweenSpeedSlider:Set(0) -- The new slider integer value
 
 		end
     end,
