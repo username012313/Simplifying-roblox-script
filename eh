@@ -145,3 +145,98 @@ local CarInvincibiltyToggle = Tab2:CreateToggle({
 		end
 	end,
 })
+local CarInfiniteFuel = Tab2:CreateToggle({
+	Name = "Infinite Fuel",
+	CurrentValue = false,
+	Flag = "Toggle9",
+	Callback = function(Value)
+		running = Value
+		if running then
+			local car = workspace.Vehicles:FindFirstChild(Player.Name)
+			if not car then return end
+			connection == car:GetAttributeChangedSignal("currentFuel"):Connect(function()
+				if not running then return end -- stop if toggle is off
+				if Fuel = car:GetAttribute("currentFuel") and Fuel < 10 then
+                    car:SetAttribute("currentFuel", 9e99)
+                    if Toggles and Toggles.Toggle2 and not Toggles.Toggle2.CurrentValue then
+                        Toggles.Toggle2:Set(true)
+                    end
+				end
+            car:SetAttribute("currentFuel", 9e99)
+			end)
+		end
+    end,
+})
+local Tab3 = Window:CreateTab("Automation", 4483362458)
+local TweenSpeedSlider = Tab3:CreateSlider({
+   Name = "Slider Example",
+   Range = {1, 50},
+   Increment = 10,
+   Suffix = "Bananas",
+   CurrentValue = 10,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+       TweenSpeed = Value
+   end,
+})
+local TweenTime = Tab3:CreateToggle({
+	Name = "Set Time automatically",
+	CurrentValue = false,
+	Flag = "Toggle9",
+	Callback = function(Value)
+		running = Value
+		if running then
+			TweenSpeed = 0
+            Rayfield:Notify({
+                Title = "Tweens",
+                Content = "Please dont move the Time slider while this is enabled",
+                Duration = 6.5,
+                Image = 4483362458,
+            })
+
+		end
+    end,
+})
+local SpawnCar = Tab2:CreateButton({
+   Name = "Get in car from anywhere",
+   Callback = function()
+        local part = workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).PrimaryPart
+        local tweenservice = game:GetService("TweenService")
+        if TweenSpeed ~= 0 then
+            local distanceX = math.abs((((workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart.CFrame.Position.X + Vector3.new(-1388.8311767578125, 5.537262439727783, 986.9691772460938).X)/2)+1388))
+            local distanceZ = math.abs((((workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart.CFrame.Position.Z + Vector3.new(-1388.8311767578125, 5.537262439727783, 986.9691772460938).Z)/2)-986))
+            local time = math.ceil(((math.max(distanceX,distanceZ))/10))
+            local tweeninfo = TweenInfo.new(time, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false)
+            local tween = tweenservice:Create(workspace:WaitForChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart, tweeninfo, {CFrame= CFrame.new(-1388.861572265625, 5.537262439727783, 988.2486572265625)})
+            tween:Play()
+            task.wait(time+0.1)
+
+            game:GetService("ReplicatedStorage"):WaitForChild("Bnl"):WaitForChild("69141aa3-8c6a-4eee-ab58-c7805873c0ee"):FireServer()
+            task.wait()
+            game:GetService("ReplicatedStorage"):WaitForChild("Bnl"):WaitForChild("e8f3d225-1be6-487b-9572-36254957b902"):FireServer("VW Passat Citizen")
+
+            while not workspace.Vehicles:WaitForChild(game:GetService("Players").LocalPlayer.Name).DriveSeat.Occupant do
+	            workspace:WaitForChild(game:GetService("Players").LocalPlayer.Name):PivotTo(workspace.Vehicles:WaitForChild(game:GetService("Players").LocalPlayer.Name).DriveSeat.CFrame)
+	            task.wait()
+                game:GetService("ReplicatedStorage"):WaitForChild("Bnl"):WaitForChild("fdffc7c3-4c83-4693-8a33-380ed2d60083"):FireServer(workspace:WaitForChild("Vehicles"):WaitForChild(game:GetService("Players").LocalPlayer.Name):WaitForChild("DriveSeat"),"Oj2",false)
+            end
+
+        else
+            local distance = ((workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart.CFrame.Position.X + Vector.new(-1388)/2).Magnitude
+            local tweeninfo = TweenInfo.new(TweenSpeed, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false)
+            local tween = tweenservice:Create(workspace:WaitForChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart, tweeninfo, {CFrame= CFrame.new(-1388.861572265625, 5.537262439727783, 988.2486572265625)})
+            tween:Play()
+            task.wait(TweenSpeed)
+
+            game:GetService("ReplicatedStorage"):WaitForChild("Bnl"):WaitForChild("69141aa3-8c6a-4eee-ab58-c7805873c0ee"):FireServer()
+            task.wait()
+            game:GetService("ReplicatedStorage"):WaitForChild("Bnl"):WaitForChild("e8f3d225-1be6-487b-9572-36254957b902"):FireServer("VW Passat Citizen")
+
+            while not workspace.Vehicles:WaitForChild(game:GetService("Players").LocalPlayer.Name).DriveSeat.Occupant do
+	            workspace:WaitForChild(game:GetService("Players").LocalPlayer.Name):PivotTo(workspace.Vehicles:WaitForChild(game:GetService("Players").LocalPlayer.Name).DriveSeat.CFrame)
+	            task.wait()
+                game:GetService("ReplicatedStorage"):WaitForChild("Bnl"):WaitForChild("fdffc7c3-4c83-4693-8a33-380ed2d60083"):FireServer(workspace:WaitForChild("Vehicles"):WaitForChild(game:GetService("Players").LocalPlayer.Name):WaitForChild("DriveSeat"),"Oj2",false)
+            end
+        end
+   end,
+})
