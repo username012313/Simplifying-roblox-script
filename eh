@@ -148,7 +148,7 @@ local CarInvincibiltyToggle = Tab2:CreateToggle({
 local Tab3 = Window:CreateTab("Automation", 4483362458)
 local TweenSpeedSlider = Tab3:CreateSlider({
    Name = "Set Time",
-   Range = {1, 50},
+   Range = {0, 50},
    Increment = 10,
    Suffix = "sec",
    CurrentValue = 10,
@@ -165,7 +165,7 @@ local TweenTimeToggle = Tab3:CreateToggle({
 		running = Value
 		if running then
 			TweenSpeed = 0
-            		TweenSpeedSlider:Set(0) -- The new slider integer value
+            TweenSpeedSlider:Set(0)
 
 		end
     end,
