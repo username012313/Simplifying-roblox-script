@@ -177,11 +177,12 @@ local TweenSpeedSlider = Tab3:CreateSlider({
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
        TweenSpeed = Value
+       TweenTime:Set(false)
    end,
 })
 local TweenTime = Tab3:CreateToggle({
 	Name = "Set Time automatically",
-	CurrentValue = false,
+	CurrentValue = true,
 	Flag = "Toggle9",
 	Callback = function(Value)
 		running = Value
@@ -193,6 +194,7 @@ local TweenTime = Tab3:CreateToggle({
                 Duration = 6.5,
                 Image = 4483362458,
             })
+            TweenSpeedSlider:Set(0) -- The new slider integer value
 
 		end
     end,
