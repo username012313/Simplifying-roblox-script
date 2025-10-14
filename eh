@@ -175,7 +175,7 @@ local SpawnCar = Tab2:CreateButton({
    Callback = function()
         local part = workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).PrimaryPart
         local tweenservice = game:GetService("TweenService")
-        if TweenSpeed 0= 0 then
+        if TweenSpeed == 0 then
             local distanceX = math.abs((((workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart.CFrame.Position.X + Vector3.new(-1388.8311767578125, 5.537262439727783, 986.9691772460938).X)/2)+1388))
             local distanceZ = math.abs((((workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart.CFrame.Position.Z + Vector3.new(-1388.8311767578125, 5.537262439727783, 986.9691772460938).Z)/2)-986))
             local time = math.ceil(((math.max(distanceX,distanceZ))/10))
