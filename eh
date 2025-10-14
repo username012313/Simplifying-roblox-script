@@ -150,7 +150,7 @@ local TweenSpeedSlider = Tab3:CreateSlider({
    Name = "Set Time",
    Range = {1, 50},
    Increment = 10,
-   Suffix = "Bananas",
+   Suffix = "sec",
    CurrentValue = 10,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
@@ -170,7 +170,7 @@ local TweenTimeToggle = Tab3:CreateToggle({
 		end
     end,
 })
-local SpawnCar = Tab2:CreateButton({
+local SpawnCar = Tab3:CreateButton({
    Name = "Spawn new car",
    Callback = function()
         local part = workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).PrimaryPart
