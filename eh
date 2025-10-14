@@ -4,7 +4,7 @@ local CFrameWS = 2
 local Carspeed = 2
 local TweenSpeed = 15
 local Window = Rayfield:CreateWindow({
-   Name = "Emergency Hamburg Hub!!",
+   Name = "EH Hub!!",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Rayfield Interface Suite",
    LoadingSubtitle = "by Sirius",
@@ -169,7 +169,7 @@ local CarInfiniteFuel = Tab2:CreateToggle({
 })
 local Tab3 = Window:CreateTab("Automation", 4483362458)
 local TweenSpeedSlider = Tab3:CreateSlider({
-   Name = "Slider Example",
+   Name = "Set Time",
    Range = {1, 50},
    Increment = 10,
    Suffix = "Bananas",
@@ -200,11 +200,11 @@ local TweenTimeToggle = Tab3:CreateToggle({
     end,
 })
 local SpawnCar = Tab2:CreateButton({
-   Name = "Get in car from anywhere",
+   Name = "Spawn new car",
    Callback = function()
         local part = workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).PrimaryPart
         local tweenservice = game:GetService("TweenService")
-        if TweenSpeed ~= 0 then
+        if TweenSpeed 0= 0 then
             local distanceX = math.abs((((workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart.CFrame.Position.X + Vector3.new(-1388.8311767578125, 5.537262439727783, 986.9691772460938).X)/2)+1388))
             local distanceZ = math.abs((((workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart.CFrame.Position.Z + Vector3.new(-1388.8311767578125, 5.537262439727783, 986.9691772460938).Z)/2)-986))
             local time = math.ceil(((math.max(distanceX,distanceZ))/10))
@@ -224,7 +224,6 @@ local SpawnCar = Tab2:CreateButton({
             end
 
         else
-            local distance = ((workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart.CFrame.Position.X + Vector.new(-1388)/2).Magnitude
             local tweeninfo = TweenInfo.new(TweenSpeed, Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false)
             local tween = tweenservice:Create(workspace:WaitForChild(game:GetService("Players").LocalPlayer.Name).HumanoidRootPart, tweeninfo, {CFrame= CFrame.new(-1388.861572265625, 5.537262439727783, 988.2486572265625)})
             tween:Play()
