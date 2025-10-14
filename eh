@@ -190,7 +190,6 @@ local SpawnCar = Tab3:CreateButton({
 
             while not workspace.Vehicles:WaitForChild(game:GetService("Players").LocalPlayer.Name).DriveSeat.Occupant do
 	            workspace:WaitForChild(game:GetService("Players").LocalPlayer.Name):PivotTo(workspace.Vehicles:WaitForChild(game:GetService("Players").LocalPlayer.Name).DriveSeat.CFrame)
-	            task.wait()
                 game:GetService("ReplicatedStorage"):WaitForChild("Bnl"):WaitForChild("fdffc7c3-4c83-4693-8a33-380ed2d60083"):FireServer(workspace:WaitForChild("Vehicles"):WaitForChild(game:GetService("Players").LocalPlayer.Name):WaitForChild("DriveSeat"),"Oj2",false)
             end
 
