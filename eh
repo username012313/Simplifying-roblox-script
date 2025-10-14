@@ -145,25 +145,3 @@ local CarInvincibiltyToggle = Tab2:CreateToggle({
 		end
 	end,
 })
-local CarInfiniteFuel = Tab2:CreateToggle({
-	Name = "Infinite Fuel",
-	CurrentValue = false,
-	Flag = "Toggle9",
-	Callback = function(Value)
-		running = Value
-		if running then
-			local car = workspace.Vehicles:FindFirstChild(Player.Name)
-			if not car then return end
-			connection == car:GetAttributeChangedSignal("currentFuel"):Connect(function()
-				if not running then return end -- stop if toggle is off
-				if Fuel = car:GetAttribute("currentFuel") and Fuel < 10 then
-                    car:SetAttribute("currentFuel", 9e99)
-                    if Toggles and Toggles.Toggle2 and not Toggles.Toggle2.CurrentValue then
-                        Toggles.Toggle2:Set(true)
-                    end
-				end
-            car:SetAttribute("currentFuel", 9e99)
-			end)
-		end
-    end,
-})
