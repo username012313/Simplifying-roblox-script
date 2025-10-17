@@ -41,12 +41,28 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Tab = Window:CreateTab("Player", 4483362458) -- Title, Image
+local InvToggle = Tab:CreateToggle({
+	Name = "Make you (semi-) Invincible",
+	CurrentValue = false,
+	Flag = "Toggle9",
+	Callback = function(Value)
+		running = Value
+		if running then
+            task.spawn(function()
+                while running do
+                    workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name).Humanoid.Health = 80
+                    task.wait()
+                end
+            end)
+		end
+    end,
+})
 local CFRameWS = Tab:CreateSlider({
    Name = "CFrame Walkspeed",
    Range = {0, 20},
    Increment = 0.1,
    Suffix = "",
-   CurrentValue = 2,
+   CurrentValue = 0,
    Flag = "Slider1", 
    Callback = function(Value)
         speed = Value/10
@@ -99,7 +115,7 @@ local CarSpeed = Tab2:CreateSlider({
    Range = {-10, 50},
    Increment = 0.1,
    Suffix = "",
-   CurrentValue = 2,
+   CurrentValue = 0,
    Flag = "Slider2", 
    Callback = function(Value)
         Carspeed = Value*10
@@ -151,7 +167,7 @@ local TweenSpeedSlider = Tab3:CreateSlider({
    Range = {0, 50},
    Increment = 10,
    Suffix = "sec",
-   CurrentValue = 10,
+   CurrentValue = 0,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
        TweenSpeed = Value
@@ -159,7 +175,7 @@ local TweenSpeedSlider = Tab3:CreateSlider({
 })
 local TweenTimeToggle = Tab3:CreateToggle({
 	Name = "Set Time automatically",
-	CurrentValue = true,
+	CurrentValue = false,
 	Flag = "Toggle9",
 	Callback = function(Value)
 		running = Value
