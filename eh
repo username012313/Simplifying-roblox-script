@@ -1,5 +1,4 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-local Player = game:GetService("Players").LocalPlayer
 local CFrameWS = 2
 local Carspeed = 2
 local TweenSpeed = 15
@@ -75,7 +74,7 @@ local CFrameWSToggle = Tab:CreateToggle({
     Callback = function(Value)
         running = Value
         if running then
-            local char = workspace:FindFirstChild(Player.Name)
+            local char = workspace:FindFirstChild(game:GetService("Players").LocalPlayer.Name)
             local hrp = char.HumanoidRootPart
             local hum = char.Humanoid
             task.spawn(function()
@@ -86,6 +85,29 @@ local CFrameWSToggle = Tab:CreateToggle({
                     end
                     task.wait() 
                 end
+            end)
+        end
+    end,
+})
+local AntiEject = Tab:CreateToggle({
+	Name = "Anti eject",
+	CurrentValue = false,
+	Flag = "Toggle9",
+	Callback = function(Value)
+		running = Value
+        if running then
+            task.spawn(function()
+	            local car = workspace.Vehicles:FindFirstChild(game:GetService("Players").LocalPlayer.Name)
+	            car.DriveSeat:GetPropertyChangedSignal("Occupant"):Connect(function()
+		            if not running then return end
+		            if not car.DriveSeat.Occupant then
+			            while not car.DriveSeat.Occupant do
+         		            workspace:WaitForChild(game:GetService("Players").LocalPlayer.Name):PivotTo(car.DriveSeat.CFrame + (Vector3.new(2,0,0) * car.DriveSeat.CFrame.RightVector))
+                               task.wait()
+                              game:GetService("ReplicatedStorage"):WaitForChild("Bnl"):WaitForChild("fdffc7c3-4c83-4693-8a33-380ed2d60083"):FireServer(car.DriveSeat,"Oj2",false)
+               	        end
+        	        end
+	            end)
             end)
         end
     end,
@@ -103,7 +125,7 @@ local SpeedCamButton = Tab2:CreateButton({
 local GetInCarButton = Tab2:CreateButton({
    Name = "Get in car from anywhere",
    Callback = function()
-        while not workspace.Vehicles:WaitForChild(Player.Name).DriveSeat.Occupant do
+        while not workspace.Vehicles:WaitForChild(game:GetService("Players").LocalPlayer.Name).DriveSeat.Occupant do
 	        workspace:WaitForChild(game:GetService("Players").LocalPlayer.Name):PivotTo(workspace.Vehicles:WaitForChild(game:GetService("Players").LocalPlayer.Name).DriveSeat.CFrame)
 	        task.wait()
              game:GetService("ReplicatedStorage"):WaitForChild("Bnl"):WaitForChild("fdffc7c3-4c83-4693-8a33-380ed2d60083"):FireServer(workspace:WaitForChild("Vehicles"):WaitForChild(game:GetService("Players").LocalPlayer.Name):WaitForChild("DriveSeat"),"Oj2",false)
@@ -128,7 +150,7 @@ local CarSpeedToggle = Tab2:CreateToggle({
     Callback = function(Value)
         running = Value
         if running then
-            local car = workspace.Vehicles:FindFirstChild(Player.Name)
+            local car = workspace.Vehicles:FindFirstChild(game:GetService("Players").LocalPlayer.Name)
             local seat = car.DriveSeat
             task.spawn(function()
 		        while running do
@@ -146,7 +168,7 @@ local CarInvincibiltyToggle = Tab2:CreateToggle({
 	Callback = function(Value)
 		running = Value
 		if running then
-			local car = workspace.Vehicles:FindFirstChild(Player.Name)
+			local car = workspace.Vehicles:FindFirstChild(game:GetService("Players").LocalPlayer.Name)
 			if not car then return end
 			connection = car:GetAttributeChangedSignal("IsOn"):Connect(function()
 				if not running then return end -- stop if toggle is off
