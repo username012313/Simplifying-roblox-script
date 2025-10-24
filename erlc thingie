@@ -133,7 +133,7 @@ local SuspensionLimits = Tab:CreateToggle({
         MyCarPath.Wheels.RR.Spring.LimitsEnabled = Value
    end,
 })
-local Tab2 = MAINUI:CreateTab("Second Tab", "atom"")
+local Tab2 = MAINUI:CreateTab("Second Tab", "atom")
 local desiredHeight = Tab2:CreateSlider({
    Name = "Set desired Height",
    Range = {0, 10},
