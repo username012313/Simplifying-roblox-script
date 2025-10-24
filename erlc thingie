@@ -134,7 +134,7 @@ local SuspensionLimits = Tab:CreateToggle({
    end,
 })
 local Tab2 = MAINUI:CreateTab("Second Tab", "atom"")
-local Slider = Tab2:CreateSlider({
+local desiredHeight = Tab2:CreateSlider({
    Name = "Set desired Height",
    Range = {0, 10},
    Increment = 0.1,
@@ -162,7 +162,7 @@ local rearSet = Tab2:CreateButton({
         MyCarPath.Wheels.RR.Spring.MinLength = desiredLength
    end,
 })
-local rearSet = Tab2:CreateButton({
+local frontSet = Tab2:CreateButton({
    Name = "Set front desired height",
    Callback = function()
         if MyCarPath == nil then
