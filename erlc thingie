@@ -1,6 +1,7 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local RAYFIELD = loadstring(game:HttpGet("https://raw.githubusercontent.com/username012313/Simplifying-roblox-script/refs/heads/main/rayfield-cleaned"))()
 local Player = game:GetService("Players").LocalPlayer
 local VehicleFolder = workspace.Vehicles
+local desiredLength = 0
 local MyCarPath = nil
 local function findPlayerVehicle()
     for _, vehicle in ipairs(VehicleFolder:GetChildren()) do
@@ -11,274 +12,166 @@ local function findPlayerVehicle()
         end
     end
 end
-
--- Example usage:
-findPlayerVehicle()  
-local Window = Rayfield:CreateWindow({
-   Name = "erlc suspensions / udc",
-   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+local function alert(msg, type, icon)
+    RAYFIELD:Notify({
+        Title = type,
+        Content = msg,
+        Duration = 3.5,
+        Image = icon,
+    })
+end
+ local MAINUI = RAYFIELD:CreateWindow({
+   Name = "Rayfield Example Window",
+   Icon = 0,  
    LoadingTitle = "Rayfield Interface Suite",
-   LoadingSubtitle = "by Sirius  // Version 0.0001a",
-   ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
-   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
-
-   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
-
-   DisableRayfieldPrompts = false,
-   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
-
-   ConfigurationSaving = {
+   LoadingSubtitle = "by Sirius",
+   ShowText = "Rayfield", 
+   Theme = "DarkBlue", 
+    ToggleUIKeybind = "K", 
+    DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, 
+    ConfigurationSaving = {
       Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "erlc"
+      FolderName = nil, 
+      FileName = "Big Hub"
    },
-
-   Discord = {
-      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+    Discord = {
+      Enabled = false, 
+      Invite = "noinvitelink", 
+      RememberJoins = true 
    },
-
-   KeySystem = false, -- Set this to true to use our key system
+    KeySystem = false, 
    KeySettings = {
-      Title = "Untitled",
-      Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
-      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Title = "",
+      Subtitle = "",
+      Note = "", 
+      FileName = "1", 
+      SaveKey = true, 
+      GrabKeyFromSite = false, 
+      Key = {""} 
    }
 })
-local Tab = Window:CreateTab("ERLC", 4483362458) -- Title, Image
-local DetectButton = Tab:CreateButton({
+
+local Tab = MAINUI:CreateTab("Main", "atom")
+local Button = Tab:CreateButton({
    Name = "Detect Car",
    Callback = function()
-      findPlayerVehicle()
+        findPlayerVehicle()
    end,
 })
-local LengthSlider = Tab:CreateSlider({
-   Name = "Change Length / rough",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MaxLength = Value
-        MyCarPath.Wheels.FR.Spring.MaxLength = Value
-        MyCarPath.Wheels.RL.Spring.MaxLength = Value
-        MyCarPath.Wheels.RR.Spring.MaxLength = Value
-        MyCarPath.Wheels.FL.Spring.MinLength = Value
-        MyCarPath.Wheels.FR.Spring.MinLength = Value
-        MyCarPath.Wheels.RL.Spring.MinLength = Value
-        MyCarPath.Wheels.RR.Spring.MinLength = Value
-        
-   end,
-})
-local FineLengthSlider = Tab:CreateSlider({
-   Name = "Change Length / fine",
-   Range = {1, 3},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MaxLength = Value
-        MyCarPath.Wheels.FR.Spring.MaxLength = Value
-        MyCarPath.Wheels.RL.Spring.MaxLength = Value
-        MyCarPath.Wheels.RR.Spring.MaxLength = Value
-        MyCarPath.Wheels.FL.Spring.MinLength = Value
-        MyCarPath.Wheels.FR.Spring.MinLength = Value
-        MyCarPath.Wheels.RL.Spring.MinLength = Value
-        MyCarPath.Wheels.RR.Spring.MinLength = Value
-        
-   end,
-})
-local VisibilityToggle = Tab:CreateToggle({
-   Name = "Make Springs visible (clientside)",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-            MyCarPath.Wheels.FL.Spring.Visible = Value
-            MyCarPath.Wheels.FR.Spring.Visible = Value
-            MyCarPath.Wheels.RL.Spring.Visible = Value
-            MyCarPath.Wheels.RR.Spring.Visible = Value
-   end,
-})
-local BugToggle = Tab:CreateToggle({
-   Name = "Make tires not bug out",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-            MyCarPath.Wheels.FL:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
-            MyCarPath.Wheels.FR:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
-            MyCarPath.Wheels.RL:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
-            MyCarPath.Wheels.RR:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
-   end,
-})
-local StiffnessSlider = Tab:CreateSlider({
-   Name = "Stiffness",
-   Range = {0, 100},
-   Increment = 0.1,
-   Suffix = "",
-   CurrentValue = 1,
-   Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   	    MyCarPath.Wheels.FL.Spring.Stiffness = Value
-        MyCarPath.Wheels.FR.Spring.Stiffness = Value
-        MyCarPath.Wheels.RL.Spring.Stiffness = Value
-        MyCarPath.Wheels.RR.Spring.Stiffness = Value
-   end,
-})
-local DampingSlider = Tab:CreateSlider({
-   Name = "Damping Slider",
-   Range = {0, 2500},
-   Increment = 5,
+local RoughHeight = Tab:CreateSlider({
+   Name = "Set height rough",
+   Range = {0, 25},
+   Increment = 0.2,
    Suffix = "",
    CurrentValue = 10,
-   Flag = "Slider3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Slider1",     
    Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.Damping = Value
-        MyCarPath.Wheels.FR.Spring.Damping = Value
-        MyCarPath.Wheels.RL.Spring.Damping = Value
-        MyCarPath.Wheels.RR.Spring.Damping = Value
+        if MyCarPath == nil then
+            alert("Please detect Car first!", "Alert", "triangle-alert")
+            return
+        end
+        MyCarPath.Wheels.FL.Spring.MaxLength = Value
+        MyCarPath.Wheels.FR.Spring.MaxLength = Value
+        MyCarPath.Wheels.RL.Spring.MaxLength = Value
+        MyCarPath.Wheels.RR.Spring.MaxLength = Value
+        MyCarPath.Wheels.FL.Spring.MinLength = Value
+        MyCarPath.Wheels.FR.Spring.MinLength = Value
+        MyCarPath.Wheels.RL.Spring.MinLength = Value
+        MyCarPath.Wheels.RR.Spring.MinLength = Value
    end,
 })
-local Limiter = Tab:CreateToggle({
-   Name = "Disable/Enable Spring Limits",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+local FineHeight = Tab:CreateSlider({
+   Name = "Set height fine",
+   Range = {0, 8},
+   Increment = 0.1,
+   Suffix = "",
+   CurrentValue = 10,
+   Flag = "Slider2",     
    Callback = function(Value)
+        if MyCarPath == nil then
+            alert("Please detect Car first!", "Alert", "triangle-alert")
+            return
+        end
+        MyCarPath.Wheels.FL.Spring.MaxLength = Value
+        MyCarPath.Wheels.FR.Spring.MaxLength = Value
+        MyCarPath.Wheels.RL.Spring.MaxLength = Value
+        MyCarPath.Wheels.RR.Spring.MaxLength = Value
+        MyCarPath.Wheels.FL.Spring.MinLength = Value
+        MyCarPath.Wheels.FR.Spring.MinLength = Value
+        MyCarPath.Wheels.RL.Spring.MinLength = Value
+        MyCarPath.Wheels.RR.Spring.MinLength = Value
+   end,
+})
+local LimitsToggle = Tab:CreateToggle({
+   Name = "Hinge Limits",
+   CurrentValue = false,
+   Flag = "Toggle1",     
+   Callback = function(Value)
+        if MyCarPath == nil then
+            alert("Please detect Car first!", "Alert", "triangle-alert")
+            return
+        end
+        MyCarPath.Wheels.FL:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
+        MyCarPath.Wheels.FR:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
+        MyCarPath.Wheels.RL:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
+        MyCarPath.Wheels.RR:WaitForChild("#SB").SuspensionHinge.LimitsEnabled = Value
+   end,
+})
+local SuspensionLimits = Tab:CreateToggle({
+   Name = "Suspenion Limits",
+   CurrentValue = false,
+   Flag = "Toggle2",     
+   Callback = function(Value)
+        if MyCarPath == nil then
+            alert("Please detect Car first!", "Alert", "triangle-alert")
+            return
+        end
         MyCarPath.Wheels.FL.Spring.LimitsEnabled = Value
         MyCarPath.Wheels.FR.Spring.LimitsEnabled = Value
         MyCarPath.Wheels.RL.Spring.LimitsEnabled = Value
         MyCarPath.Wheels.RR.Spring.LimitsEnabled = Value
    end,
 })
-local Tab1 = Window:CreateTab("Change Springs individualy", 4483362458) -- Title, Image
-local Slider1 = Tab1:CreateSlider({
-   Name = "Change Length FL / MaxLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
+local Tab2 = MAINUI:CreateTab("Second Tab", "atom"")
+local Slider = Tab2:CreateSlider({
+   Name = "Set desired Height",
+   Range = {0, 10},
+   Increment = 0.1,
    Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   CurrentValue = 0,
+   Flag = "Slider3",     
    Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MaxLength = Value
-        
+        if MyCarPath == nil then
+            alert("Please detect Car first!", "Alert", "triangle-alert")
+            return
+        end
+        desiredLength = Value
    end,
 })
-local Slider2= Tab1:CreateSlider({
-   Name = "Change Length FR / MaxLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.FR.Spring.MaxLength = Value
-        
+local rearSet = Tab2:CreateButton({
+   Name = "Set rear desired height",
+   Callback = function()
+        if MyCarPath == nil then
+            alert("Please detect Car first!", "Alert", "triangle-alert")
+            return
+        end
+        MyCarPath.Wheels.RL.Spring.MaxLength = desiredLength
+        MyCarPath.Wheels.RR.Spring.MaxLength = desiredLength
+        MyCarPath.Wheels.RL.Spring.MinLength = desiredLength
+        MyCarPath.Wheels.RR.Spring.MinLength = desiredLength
    end,
 })
-local Slider3 = Tab1:CreateSlider({
-   Name = "Change Length RL / MaxLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider12", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.RL.Spring.MaxLength = Value
-        
-   end,
-})
-local Slider4 = Tab1:CreateSlider({
-   Name = "Change Length RR / MaxLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider13", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.RR.Spring.MaxLength = Value
-        
-   end,
-})
-local Slider5 = Tab1:CreateSlider({
-   Name = "Change Length FL / MinLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider10", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MinLength = Value
-        
-   end,
-})
-local Slider = Tab1:CreateSlider({
-   Name = "Change Length FR / MinLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider10", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.FR.Spring.MinLength = Value
-        
-   end,
-})
-local Slider = Tab1:CreateSlider({
-   Name = "Change Length RL / MinLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.RL.Spring.MinLength = Value
-        
-   end,
-})
-local Slider = Tab1:CreateSlider({
-   Name = "Change Length RR / MinLength",
-   Range = {-0.1, 50},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider11", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.RR.Spring.MinLength = Value
-        
-   end,
-})
-local Tab2 = Window:CreateTab("rear and front idk", 4483362458)
-local LengthFSlider = Tab2:CreateSlider({
-   Name = "Change Length Front",
-   Range = {-0.5, 5},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.FL.Spring.MaxLength = Value
-        MyCarPath.Wheels.FR.Spring.MaxLength = Value
-        MyCarPath.Wheels.FL.Spring.MinLength = Value
-        MyCarPath.Wheels.FR.Spring.MinLength = Value        
-   end,
-})
-local LengthRSlider = Tab2:CreateSlider({
-   Name = "Change Length Front",
-   Range = {-0.5, 5},
-   Increment = 0.05,
-   Suffix = "",
-   CurrentValue = 2.2,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        MyCarPath.Wheels.RL.Spring.MaxLength = Value
-        MyCarPath.Wheels.RR.Spring.MaxLength = Value
-        MyCarPath.Wheels.RL.Spring.MinLength = Value
-        MyCarPath.Wheels.RR.Spring.MinLength = Value        
+local rearSet = Tab2:CreateButton({
+   Name = "Set front desired height",
+   Callback = function()
+        if MyCarPath == nil then
+            alert("Please detect Car first!", "Alert", "triangle-alert")
+            return
+        end
+        MyCarPath.Wheels.FL.Spring.MaxLength = desiredLength
+        MyCarPath.Wheels.FR.Spring.MaxLength = desiredLength
+        MyCarPath.Wheels.FL.Spring.MinLength = desiredLength
+        MyCarPath.Wheels.FR.Spring.MinLength = desiredLength
    end,
 })
